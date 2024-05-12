@@ -1,0 +1,98 @@
+.backgroundright {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    right: 0px;
+    top: 0px;
+    background: linear-gradient(217.64deg, #9181f4 -5.84%, #97e7e1 106.73%);
+  }
+  .alert{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    transform: translateX(0);
+    width: 30%;
+  }
+  .signuptitle {
+    position: absolute;
+    width: 150px;
+    height: 21px;
+    left: 21%;
+    top: 110px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 45px;
+    text-transform: uppercase;
+    color: #000000;
+  }
+  
+  .userimg {
+    position: absolute;
+    left: 35%;
+    top: 66px;
+  }
+  
+  .signupimage {
+    box-sizing: border-box;
+    position: absolute;
+    width: 550px;
+    height: 700px;
+    left: 61%;
+    top: 13%;
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(6.8px);
+    border-radius: 46px;
+  }
+  .signupbtn {
+    position: absolute;
+    width: 124px;
+    height: 52px;
+    left: 390px;
+    top: 750px;
+    background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
+    box-shadow: 0px 8px 21px rgba(0, 0, 0, 0.16);
+    border-radius: 16px;
+  }
+  .form-control {
+    padding-left: 40px;
+    position: relative;
+    width: 364px;
+    height: 52px;
+    background: rgba(240, 237, 255, 0.8);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    top: 190px;
+    left: 260px;
+  }
+  .text-primary {
+    position: absolute;
+    top: 0px;
+    left: 140px;
+    width: 100px;
+  }
+  .text1 {
+    position: absolute;
+    top: 700px;
+    left: 290px;
+    width: 180px;
+    font-size: 12px;
+  }
+  @media (max-width: 1500px) {
+    .loginimage {
+      width: 450px; /* Example change */
+    }
+    .signupbtn {
+      width: 100px;
+      transition: all 0.5s ease-in-out;
+      left: 25%;
+    }
+    .form-control {
+      width: 100px;
+      transition: all 0.5s ease-in-out;
+      left: 20%;
+      animation: ease-out 0.8;
+    }
+  }
+  

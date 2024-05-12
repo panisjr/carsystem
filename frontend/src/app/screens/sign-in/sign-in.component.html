@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="backgroundright"></div>
+    <img class="loginimage" src="/assets/login.jpg" />
+    <div class="logintitle">Sign In</div>
+   <!-- Error Message -->
+   <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+    <h4 class="alert-heading">Error!</h4>
+    <hr>
+    <p>
+      {{ errorMessage }}
+    </p>
+  </div>
+    <form (ngSubmit)="signIn()">
+      <div>
+          <input class="form-control" placeholder="Email" type="email" name="email" [(ngModel)]="email">
+      </div>
+      <div>
+          <input class="form-control" placeholder="Password" type="password" name="password" [(ngModel)]="password">
+      </div>
+      <button type="submit" class="loginbtn">Sign In</button>
+      <button routerLink="/signUp" class="signupbtn">Sign Up</button>
+    </form>
+  </div>

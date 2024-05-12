@@ -1,0 +1,17 @@
+<body>
+    <nav>
+        <img src="assets/logo1.jpg" class="logo" alt="Dynamic Image">
+    <div class="title">Car Management System</div>
+    <ul>
+        <li><button class="main">Home</button></li>
+        <li><button (click)="goToPage('login')">Cars</button></li>
+        <li><button (click)="goToPage('login')">About</button></li>
+        <li><button (click)="goToPage('login')">Contact</button></li>    
+        <li><button (click)="logout()">Logout</button></li>    
+    </ul>
+    </nav>
+    <section>
+        <div class="ads">Best car Dealer In Town!</div>
+        <button (click)="goToPage('login')" class="ordernow">Order Now!</button>
+    </section>
+    </body>
