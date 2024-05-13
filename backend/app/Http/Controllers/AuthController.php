@@ -140,11 +140,19 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         $user = JWTAuth::user();
+        $expiration = JWTAuth::factory()->getTTL() * 24 * 60 * 60; // Token expiration time in seconds (1 day)
+
+        // Encrypt the token before storing it in the cookie
+        $encryptedToken = encrypt($token);
+
+        // Set the token in a cookie with encryption
+        $cookie = cookie('access_token', $encryptedToken, $expiration);
+
+        // Return the user data in the response along with the token type and expiration
         return response()->json([
-            'access_token' => $token,
-            'user'=>$user,
+            'user' => $user,
             'token_type' => 'bearer',
-            'expires_in' => JWTAuth::factory()->getTTL() * 60
-        ]);
+            'expires_in' => $expiration,
+        ])->withCookie($cookie);
     }
 }

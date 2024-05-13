@@ -1,87 +1,95 @@
 <div class="container-fluid">
-    <div class="backgroundright"></div>
-    <img class="signupimage" src="/assets/login.jpg" />
-    <div class="signuptitle">SIGN UP</div>
-    <!-- Error Message -->
-    <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
-      <h4 class="alert-heading">Error!</h4>
-      <hr>
-      <p>
-        {{ errorMessage }}
-      </p>
-    </div>
-    <form (ngSubmit)="signUp()">
-      <div>
-        <input
-          type="text"
-          class="form-control"
-          name="firstname"
-          [(ngModel)]="firstname"
-          required
-          placeholder="First Name"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          class="form-control"
-          name="middlename"
-          [(ngModel)]="middlename"
-          placeholder="Middle Initial (Optional)"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          class="form-control"
-          name="lastname"
-          [(ngModel)]="lastname"
-          placeholder="Last Name"
-        />
-      </div>
-      <div>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          [(ngModel)]="email"
-          placeholder="Email"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          class="form-control"
-          name="contact"
-          [(ngModel)]="contact"
-          placeholder="Contact"
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          [(ngModel)]="password"
-          placeholder="Password"
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          class="form-control"
-          name="confirm_password"
-          [(ngModel)]="confirm_password"
-          placeholder="Confirm Password"
-        />
-      </div>
-      <div>
-        <p class="text1">
-          Already have an account?
-          <i class="text-primary" routerLink="/signIn">Sign In</i>
+  <div class="row">
+    <div class="col-8 p-0 backgroundright">
+      <img class="signupimage" src="/assets/login.jpg" />
+      <!-- Error Message -->
+      <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+        <h4 class="alert-heading">Error!</h4>
+        <hr />
+        <p>
+          {{ errorMessage }}
         </p>
-        <button type="submit" class="signupbtn">Sign Up</button>
       </div>
-    </form>
+    </div>
+    <div class="col-4 d-flex-row align-items-center justify-content-center">
+      <div>
+        <h1 class="signUp text-center">SIGN UP</h1>
+      </div>
+      <div>
+        <form (ngSubmit)="signUp()">
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              name="firstname"
+              [(ngModel)]="firstname"
+              required
+              placeholder="First Name"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              name="middlename"
+              [(ngModel)]="middlename"
+              placeholder="Middle Initial (Optional)"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              name="lastname"
+              [(ngModel)]="lastname"
+              placeholder="Last Name"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Email"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              name="contact"
+              [(ngModel)]="contact"
+              placeholder="Contact"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              class="form-control"
+              name="confirm_password"
+              [(ngModel)]="confirm_password"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <div>
+            <p class="text1">
+              Already have an account?
+              <i class="text-primary" routerLink="/signIn">Sign In</i>
+            </p>
+            <button type="submit" class="signupbtn">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  
+</div>
