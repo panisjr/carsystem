@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row vh-100">
     <div class="col-sm-6 col-md-5 col-lg-2 navBar">
-      <div class=" input-group align-items-center justify-content-center">
+      <div class="input-group align-items-center justify-content-center">
         <img class="logo" src="/assets/logo.png" />
         <h3 class="signUp text-center">AutoGaurdian</h3>
       </div>
@@ -21,7 +21,7 @@
           routerLinkActive="active"
           routerLink="/carlist"
         >
-        <h3 class="bi bi-car-front-fill"></h3>
+          <h3 class="bi bi-car-front-fill"></h3>
           <p class="ms-4 p-2">Vehicle Management</p>
         </div>
         <div
@@ -64,131 +64,203 @@
         </div>
       </nav>
     </div>
-    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent">
+    <div
+      class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
+    >
       <div class="col-12 d-flex justify-content-between border-bottom">
-        <div class="p-3 text-center ms-5">
-          <h2>Add New Car</h2>
+        <div class="p-3 text-center ms-5 d-flex">
+          <h2 class="me-4">Vehicle Management</h2>
+          <div class="addCarBtn" data-bs-target="#addCar" data-bs-toggle="modal">
+            <p class="mt-2">New car</p>
+            <h2 class="bi bi-plus-lg"></h2>
+          </div>
         </div>
         <div class="p-2 me-3">
           <img src="/assets/profilepic.png" alt="profile" class="profile" />
         </div>
       </div>
+
+      <!-- Add Car Modal -->
+      <div
+        class="modal fade"
+        id="addCar"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="addCar"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content p-3">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addCar">Add Account</h1>
+            </div>
+            <div class="modal-body">
+              <form (ngSubmit)="addCar()">
+                <div class="form-group">
+                  <label for="make">Make:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="make"
+                    name="make"
+                    [(ngModel)]="carData.make"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="model">Model:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="model"
+                    name="model"
+                    [(ngModel)]="carData.model"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="year">Year:</label>
+                  <input
+                    type="number"
+                    class="signUpInput"
+                    id="year"
+                    name="year"
+                    [(ngModel)]="carData.year"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="VIN">VIN:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="VIN"
+                    name="VIN"
+                    [(ngModel)]="carData.VIN"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="license_plate_number">License Plate Number:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="license_plate_number"
+                    name="license_plate_number"
+                    [(ngModel)]="carData.license_plate_number"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="price">Price:</label>
+                  <input
+                    type="number"
+                    class="signUpInput"
+                    id="price"
+                    name="price"
+                    [(ngModel)]="carData.price"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="color">Color:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="color"
+                    name="color"
+                    [(ngModel)]="carData.color"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="fuel_type">Fuel Type:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="fuel_type"
+                    name="fuel_type"
+                    [(ngModel)]="carData.fuel_type"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="transmission_type">Transmission Type:</label>
+                  <input
+                    type="text"
+                    class="signUpInput"
+                    id="transmission_type"
+                    name="transmission_type"
+                    [(ngModel)]="carData.transmission_type"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="quantity">Quantity:</label>
+                  <input
+                    type="number"
+                    class="signUpInput"
+                    id="quantity"
+                    name="quantity"
+                    [(ngModel)]="carData.quantity"
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="signupbtn" [disabled]="loading">
+                    Add Car
+                  </button>
+                <button class="cancelBtn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="col-12 mt-5">
-        <form (ngSubmit)="addCar()">
-          <div class="form-group">
-            <label for="make">Make:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="make"
-              name="make"
-              [(ngModel)]="carData.make"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="model">Model:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="model"
-              name="model"
-              [(ngModel)]="carData.model"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="year">Year:</label>
-            <input
-              type="number"
-              class="signUpInput"
-              id="year"
-              name="year"
-              [(ngModel)]="carData.year"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="VIN">VIN:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="VIN"
-              name="VIN"
-              [(ngModel)]="carData.VIN"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="license_plate_number">License Plate Number:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="license_plate_number"
-              name="license_plate_number"
-              [(ngModel)]="carData.license_plate_number"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="price">Price:</label>
-            <input
-              type="number"
-              class="signUpInput"
-              id="price"
-              name="price"
-              [(ngModel)]="carData.price"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="color">Color:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="color"
-              name="color"
-              [(ngModel)]="carData.color"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="fuel_type">Fuel Type:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="fuel_type"
-              name="fuel_type"
-              [(ngModel)]="carData.fuel_type"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="transmission_type">Transmission Type:</label>
-            <input
-              type="text"
-              class="signUpInput"
-              id="transmission_type"
-              name="transmission_type"
-              [(ngModel)]="carData.transmission_type"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input
-              type="number"
-              class="signUpInput"
-              id="quantity"
-              name="quantity"
-              [(ngModel)]="carData.quantity"
-              required
-            />
-          </div>
-          <button type="submit" class="signupbtn" [disabled]="loading">
-            Add Car
-          </button>
-        </form>
+        <h2>List of Cars</h2>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="cars.length === 0">No cars available.</div>
+
+        <table
+          datatable
+          [dtOptions]="dtoptions"
+          [dtTrigger]="dtTrigger"
+          class="table table-bordered"
+        >
+          <thead>
+            <tr>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>VIN</th>
+              <th>License Plate Number</th>
+              <th>Price</th>
+              <th>Color</th>
+              <th>Fuel Type</th>
+              <th>Transmission Type</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let car of cars">
+              <td>{{ car.make }}</td>
+              <td>{{ car.model }}</td>
+              <td>{{ car.year }}</td>
+              <td>{{ car.VIN }}</td>
+              <td>{{ car.license_plate_number }}</td>
+              <td>{{ car.price }}</td>
+              <td>{{ car.color }}</td>
+              <td>{{ car.fuel_type }}</td>
+              <td>{{ car.transmission_type }}</td>
+              <td>{{ car.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <!-- Error Message -->
@@ -208,40 +280,4 @@
       </p>
     </div>
   </div>
-</div>
-<div class="container">
-    <h2>List of Cars</h2>
-    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-    <div *ngIf="cars.length === 0">No cars available.</div>
-
-    <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>VIN</th>
-                <th>License Plate Number</th>
-                <th>Price</th>
-                <th>Color</th>
-                <th>Fuel Type</th>
-                <th>Transmission Type</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let car of cars">
-                <td>{{ car.make }}</td>
-                <td>{{ car.model }}</td>
-                <td>{{ car.year }}</td>
-                <td>{{ car.VIN }}</td>
-                <td>{{ car.license_plate_number }}</td>
-                <td>{{ car.price }}</td>
-                <td>{{ car.color }}</td>
-                <td>{{ car.fuel_type }}</td>
-                <td>{{ car.transmission_type }}</td>
-                <td>{{ car.quantity }}</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
