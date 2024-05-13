@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,11 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  constructor(private router:Router){}
+  constructor(private router:Router, private token:TokenService){}
   logout(){
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-    this.router.navigate(['/signIn']);
+    this.token.remove();
   }
   goToPage(pageName:string):void{
       this.router.navigate([`${pageName}`])

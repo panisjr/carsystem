@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
 
   canActivate(): boolean {
-    const token = sessionStorage.getItem('token');
+    const token = this.cookieService.get('access_token');
     if (token) {
       return true; // Allow access to the route if the JWT token is present
     } else {
