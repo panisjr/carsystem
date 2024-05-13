@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -28,7 +29,7 @@ class AuthController extends Controller
     public function signIn()
     {
         $credentials = request(['email', 'password']);
-        if (!$token = auth()->attempt($credentials)) {
+        if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -139,20 +140,18 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        // Extract user data from the token
         $user = JWTAuth::user();
-        $expiration = JWTAuth::factory()->getTTL() * 24 * 60 * 60; // Token expiration time in seconds (1 day)
 
-        // Encrypt the token before storing it in the cookie
-        $encryptedToken = encrypt($token);
+        // Calculate token expiration time (in seconds)
+        $expiration = JWTAuth::factory()->getTTL() * 60; // Convert minutes to seconds
 
-        // Set the token in a cookie with encryption
-        $cookie = cookie('access_token', $encryptedToken, $expiration);
-
-        // Return the user data in the response along with the token type and expiration
+        // Return the JWT token as a string and set it in a cookie
         return response()->json([
+            'access_token' => $token,
+            'expires_in' => $expiration,
             'user' => $user,
             'token_type' => 'bearer',
-            'expires_in' => $expiration,
-        ])->withCookie($cookie);
+        ])->cookie('access_token', $token, $expiration, null, null, false, true);
     }
 }

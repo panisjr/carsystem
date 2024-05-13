@@ -11,6 +11,7 @@ import { CustomerComponent } from './screens/customer/customer.component';
 import { HomeComponent } from './screens/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ServerService } from './services/server.service';
+import { CookieService } from 'ngx-cookie-service';
 import { CarlistComponent } from './screens/carlist/carlist.component';
 import { DataTablesModule } from "angular-datatables";
 
@@ -38,7 +39,7 @@ import { DataTablesModule } from "angular-datatables";
       },
     }),
   ],
-  providers: [ServerService],
+  providers: [ ServerService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

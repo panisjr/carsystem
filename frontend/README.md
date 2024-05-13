@@ -31,3 +31,5 @@ npm i @auth0/angular-jwt
 npm i bootstrap@5.3.3
 npm i bootstrap-icons
 npm install ngx-cookie-service
+npm i --save-dev @types/jquery
+npm install datatables.net-dt
