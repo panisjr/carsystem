@@ -1,52 +1,76 @@
-*{
+* {
   font-family: "Red Hat Display", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 .backgroundright {
-    background: linear-gradient(217.64deg, #9181f4 -5.84%, #97e7e1 106.73%);
-  }
-  .alert{
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    transform: translateX(0);
-    width: 30%;
-  }
-  .signupimage {
-    box-sizing: border-box;
-    width: 100%;
-    height: 729px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(6.8px);
-  }
-  .signUp{
-    /* font-family: "Jaro", sans-serif; */
-    font-family: "Rowdies", sans-serif;
+  background: linear-gradient(217.64deg, #9181f4 -5.84%, #97e7e1 106.73%);
+}
+.logo{
+ width: 80px;
+}
+form{
+  width: 300px;
+}
+.text-primary{
+  cursor: pointer;
+}
+.text1{
+  margin-top: 20px;
+}
+.signUpInput{
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 2px solid gray;
+}
+.alert {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  transform: translateX(0);
+  width: 30%;
+}
+.signupimage{
+  box-sizing: border-box;
+  width: 100%;
+  height: 729px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(6.8px);
+}
+.signUp {
+  /* font-family: "Jaro", sans-serif; */
+  font-family: "Rowdies", sans-serif;
+}
+.signupbtn {
+  width: 100%;
+  font-size: large;
+  height: 52px;
+  background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
+  border: none;
+}
+.signupbtn:hover{
+  transition: 0.3s;
+  background: linear-gradient(99.78deg, #93d1f8 -5.85%, #654ff7 109.55%);
+  color: white;
+  border: none;
+}
+@media screen and (max-width: 700px) {
+  .loginimage {
+    width: 450px; /* Example change */
   }
   .signupbtn {
-    width: 124px;
-    height: 52px;
-    background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
-    box-shadow: 0px 8px 21px rgba(0, 0, 0, 0.16);
+    width: 100px;
+    transition: all 0.5s ease-in-out;
+    left: 25%;
   }
-  @media screen and (max-width: 700px) {
-    .loginimage {
-      width: 450px; /* Example change */
-    }
-    .signupbtn {
-      width: 100px;
-      transition: all 0.5s ease-in-out;
-      left: 25%;
-    }
-    .form-control {
-      width: 100px;
-      transition: all 0.5s ease-in-out;
-      left: 20%;
-      animation: ease-out 0.8;
-    }
+  .form-control {
+    width: 100px;
+    transition: all 0.5s ease-in-out;
+    left: 20%;
+    animation: ease-out 0.8;
   }
-  
+}
