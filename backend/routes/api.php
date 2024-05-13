@@ -29,7 +29,5 @@ Route::group(['middleware' => 'api'], function ($router) {
     // Car routes
     Route::get('cars', [CarlistController::class, 'index']);
     Route::post('cars', [CarlistController::class, 'store']);
-    Route::get('cars/{car}', [CarlistController::class, 'show']);
-    Route::put('cars/{car}', [CarlistController::class, 'update']);
-    Route::delete('cars/{car}', [CarlistController::class, 'destroy']);
+    
 });

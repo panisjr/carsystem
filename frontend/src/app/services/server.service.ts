@@ -20,4 +20,8 @@ export class ServerService {
   addCar(data: any) {
     return this.http.post(`${this.apiUrl}/cars`, data);
   }
+
+  getCars() {
+    return this.http.get(`${this.apiUrl}/cars`);
+  }
 }
