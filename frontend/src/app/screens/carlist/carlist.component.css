@@ -1,0 +1,100 @@
+/* Navbar */
+.navBar {
+  background-color: #161721;
+  color: white;
+}
+.logo {
+  width: 80px;
+}
+.selection {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: start;
+  padding: 20px;
+  flex-direction: column;
+}
+.signUp {
+  /* font-family: "Jaro", sans-serif; */
+  font-family: "Rowdies", sans-serif;
+}
+.logoutBtn {
+  margin-top: 100px;
+}
+.navBtn,
+.logoutBtn {
+  color: white;
+  padding: 5px 15px 0 15px;
+}
+.navBtn:hover,
+.logoutBtn:hover {
+  background-color: white;
+  border-radius: 5px;
+  color: #161721;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.navBtn.active,
+.logoutBtn.active {
+  background-color: white;
+  border-radius: 5px;
+  color: #161721;
+}
+.profile {
+  width: 40px;
+  border-radius: 50%;
+}
+.border-bottom {
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+/* Navbar End */
+
+/* Form */
+.signUpInput {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 2px solid gray;
+}
+.signupbtn {
+  width: 127px;
+  font-size: large;
+  height: 52px;
+  color: white;
+  background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
+  border: none;
+}
+.signupbtn:hover {
+  transition: 0.3s;
+  background: linear-gradient(99.78deg, #93d1f8 -5.85%, #654ff7 109.55%);
+  color: white;
+  border: none;
+}
+/* End Form */
+/* WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Thumb color */
+  border-radius: 5px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb color on hover */
+}
+.rightSideContent {
+  overflow-y: auto;
+  height: 729px;
+}
+.alert {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  transform: translateX(0);
+  width: 30%;
+}
