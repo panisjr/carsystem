@@ -1,0 +1,52 @@
+<div class="container">
+    <h2>Add New Car</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <form (ngSubmit)="addCar()">
+        <div class="form-group">
+            <label for="make">Make:</label>
+            <input type="text" class="form-control" id="make" name="make" [(ngModel)]="carData.make" required>
+        </div>
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <input type="text" class="form-control" id="model" name="model" [(ngModel)]="carData.model" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" class="form-control" id="year" name="year" [(ngModel)]="carData.year" required>
+        </div>
+        <div class="form-group">
+            <label for="VIN">VIN:</label>
+            <input type="text" class="form-control" id="VIN" name="VIN" [(ngModel)]="carData.VIN" required>
+        </div>
+        <div class="form-group">
+            <label for="license_plate_number">License Plate Number:</label>
+            <input type="text" class="form-control" id="license_plate_number" name="license_plate_number"
+                [(ngModel)]="carData.license_plate_number" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="carData.price" required>
+        </div>
+        <div class="form-group">
+            <label for="color">Color:</label>
+            <input type="text" class="form-control" id="color" name="color" [(ngModel)]="carData.color" required>
+        </div>
+        <div class="form-group">
+            <label for="fuel_type">Fuel Type:</label>
+            <input type="text" class="form-control" id="fuel_type" name="fuel_type" [(ngModel)]="carData.fuel_type"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="transmission_type">Transmission Type:</label>
+            <input type="text" class="form-control" id="transmission_type" name="transmission_type"
+                [(ngModel)]="carData.transmission_type" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="carData.quantity"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Add Car</button>
+    </form>
+</div>

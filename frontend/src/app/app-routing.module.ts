@@ -5,6 +5,7 @@ import { HomeComponent } from './screens/home/home.component';
 import { SignUpComponent } from './screens/sign-up/sign-up.component';
 import { AdminComponent } from './screens/admin/admin.component';
 import { CustomerComponent } from './screens/customer/customer.component';
+import { CarlistComponent } from './screens/carlist/carlist.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'signUp', component: SignUpComponent, title: 'Sign Up' },
   { path: 'adminDashboard', component: AdminComponent, title: 'Admin Dashboard', canActivate:[AuthGuard]},
   { path: 'costumerManagement', component: CustomerComponent, title: 'Costumer Management' },
+  { path: 'carlist', component: CarlistComponent, title: 'Car Management' },
+
 ];
 
 @NgModule({

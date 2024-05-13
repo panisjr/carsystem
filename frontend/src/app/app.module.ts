@@ -11,6 +11,7 @@ import { CustomerComponent } from './screens/customer/customer.component';
 import { HomeComponent } from './screens/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ServerService } from './services/server.service';
+import { CarlistComponent } from './screens/carlist/carlist.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ServerService } from './services/server.service';
     AdminComponent,
     CustomerComponent,
     HomeComponent,
+    CarlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { ServerService } from './services/server.service';
       },
     }),
   ],
-  providers: [ ServerService],
+  providers: [ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
