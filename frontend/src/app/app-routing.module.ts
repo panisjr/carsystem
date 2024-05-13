@@ -8,8 +8,8 @@ import { CustomerComponent } from './screens/customer/customer.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'signIn', component: SignInComponent, title: 'Sign In' },
   { path: '', redirectTo: '/signIn', pathMatch: 'full' },
+  { path: 'signIn', component: SignInComponent, title: 'Sign In' },
   { path: 'customerDashboard', component: HomeComponent, title: 'Home', canActivate:[AuthGuard] },
   { path: 'signUp', component: SignUpComponent, title: 'Sign Up' },
   { path: 'adminDashboard', component: AdminComponent, title: 'Admin Dashboard', canActivate:[AuthGuard]},
