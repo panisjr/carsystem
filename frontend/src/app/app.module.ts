@@ -13,6 +13,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ServerService } from './services/server.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CarlistComponent } from './screens/carlist/carlist.component';
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CarlistComponent } from './screens/carlist/carlist.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    DataTablesModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('jwt_token'),

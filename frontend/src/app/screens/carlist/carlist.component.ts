@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ServerService } from '../../services/server.service';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-carlist',
@@ -22,11 +23,34 @@ export class CarlistComponent {
     quantity: null,
   };
 
+  cars: any[] = [];
+  dtoptions: any = {}; // Add this for datatable options
+  dtTrigger = new Subject<any>();
   errorMessage: string | null = null;
   successMessage: string | null = null;
   loading: boolean = false;
 
   constructor(private serverService: ServerService, private token: TokenService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.dtoptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10
+    };
+    this.getCars();
+  }
+
+  getCars(): void {
+    this.serverService.getCars().subscribe(
+      (response: any) => {
+        this.cars = response;
+        this.dtTrigger.next(null); // Trigger datatable refresh after data fetch
+      },
+      (error) => {
+        console.error('Error fetching cars:', error);
+      }
+    );
+  }
 
   addCar() {
     this.loading = true;
@@ -37,7 +61,7 @@ export class CarlistComponent {
         setTimeout(() => {
           this.successMessage = null;
         }, 3500);
-        // Clear form data after successful addition
+
         this.carData = {
           make: '',
           model: '',
