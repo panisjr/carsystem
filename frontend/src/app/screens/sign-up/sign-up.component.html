@@ -11,16 +11,18 @@
         </p>
       </div>
     </div>
-    <div class="col-4 d-flex-row align-items-center justify-content-center">
+    <div class="col-4 d-flex align-items-center justify-content-center">
       <div>
-        <h1 class="signUp text-center">SIGN UP</h1>
-      </div>
-      <div>
+        <div class="input-group align-items-center justify-content-between mb-5">
+          <img class="logo" src="/assets/logo.png" />
+          <h1 class="signUp text-center">AutoGaurdian</h1>
+        </div>
+        <h1 class="signUp text-center mb-5">SIGN UP</h1>
         <form (ngSubmit)="signUp()">
           <div>
             <input
               type="text"
-              class="form-control"
+              class="signUpInput"
               name="firstname"
               [(ngModel)]="firstname"
               required
@@ -30,7 +32,7 @@
           <div>
             <input
               type="text"
-              class="form-control"
+              class="signUpInput"
               name="middlename"
               [(ngModel)]="middlename"
               placeholder="Middle Initial (Optional)"
@@ -39,7 +41,7 @@
           <div>
             <input
               type="text"
-              class="form-control"
+              class="signUpInput"
               name="lastname"
               [(ngModel)]="lastname"
               placeholder="Last Name"
@@ -48,7 +50,7 @@
           <div>
             <input
               type="email"
-              class="form-control"
+              class="signUpInput"
               name="email"
               [(ngModel)]="email"
               placeholder="Email"
@@ -57,7 +59,7 @@
           <div>
             <input
               type="text"
-              class="form-control"
+              class="signUpInput"
               name="contact"
               [(ngModel)]="contact"
               placeholder="Contact"
@@ -66,7 +68,7 @@
           <div>
             <input
               type="password"
-              class="form-control"
+              class="signUpInput"
               name="password"
               [(ngModel)]="password"
               placeholder="Password"
@@ -75,7 +77,7 @@
           <div>
             <input
               type="password"
-              class="form-control"
+              class="signUpInput"
               name="confirm_password"
               [(ngModel)]="confirm_password"
               placeholder="Confirm Password"
