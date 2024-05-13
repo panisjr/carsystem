@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +27,9 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('logout', [AuthController::class, 'logout']);
     
     // Car routes
-    Route::get('cars', [CarController::class, 'index']);
-    Route::post('cars', [CarController::class, 'store']);
-    Route::get('cars/{car}', [CarController::class, 'show']);
-    Route::put('cars/{car}', [CarController::class, 'update']);
-    Route::delete('cars/{car}', [CarController::class, 'destroy']);
+    Route::get('cars', [CarlistController::class, 'index']);
+    Route::post('cars', [CarlistController::class, 'store']);
+    Route::get('cars/{car}', [CarlistController::class, 'show']);
+    Route::put('cars/{car}', [CarlistController::class, 'update']);
+    Route::delete('cars/{car}', [CarlistController::class, 'destroy']);
 });
