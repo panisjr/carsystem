@@ -39,18 +39,7 @@ export class SignUpComponent {
         this.errorMessage = null;
       }, 3500);
     } else {
-      this.serverService.signUp(userData).subscribe(
-        (response: any) => {
-          this.successMessage = response.message;
-          this.router.navigate(['/signIn']);
-        },
-        (error) => {
-          this.errorMessage = error.error.message;
-          setTimeout(() => {
-            this.errorMessage = null;
-          }, 3500);
-        }
-      );
+      this.serverService.signUp(userData);
     }
   }
 
