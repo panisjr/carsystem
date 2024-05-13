@@ -1,7 +1,7 @@
 * {
   font-family: "Red Hat Display", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 .backgroundright {
@@ -32,7 +32,7 @@ form{
   transform: translateX(0);
   width: 30%;
 }
-.signupimage {
+.signupimage{
   box-sizing: border-box;
   width: 100%;
   height: 729px;

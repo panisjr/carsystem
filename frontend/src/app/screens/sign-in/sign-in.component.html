@@ -1,23 +1,54 @@
 <div class="container-fluid">
-    <div class="backgroundright"></div>
-    <img class="loginimage" src="/assets/login.jpg" />
-    <div class="logintitle">Sign In</div>
-   <!-- Error Message -->
-   <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
-    <h4 class="alert-heading">Error!</h4>
-    <hr>
-    <p>
-      {{ errorMessage }}
-    </p>
-  </div>
-    <form (ngSubmit)="signIn()">
-      <div>
-          <input class="form-control" placeholder="Email" type="email" name="email" [(ngModel)]="email">
+  <div class="row">
+    <div class="col-8 p-0 backgroundright">
+      <img class="signupimage" src="/assets/signIn.jpg" />
+      <!-- Error Message -->
+      <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+        <h4 class="alert-heading">Error!</h4>
+        <hr />
+        <p>
+          {{ errorMessage }}
+        </p>
       </div>
+    </div>
+    <div class="col-4 d-flex align-items-center justify-content-center">
       <div>
-          <input class="form-control" placeholder="Password" type="password" name="password" [(ngModel)]="password">
+        <div
+          class="input-group align-items-center justify-content-between mb-5"
+        >
+          <img class="logo" src="/assets/logo.png" />
+          <h1 class="signUp text-center">AutoGaurdian</h1>
+        </div>
+        <h1 class="signUp text-center mb-5">SIGN IN</h1>
+        <p class="text-center">Welcome back!</p>
+        <form (ngSubmit)="signIn()">
+          <div>
+            <input
+              type="email"
+              class="signUpInput"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Email"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              class="signUpInput"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <button type="submit" class="signupbtn">Sign In</button>
+            <p class="text1">
+              Don't have an account?
+              <i class="text-primary" routerLink="/signUp">Sign Up</i>
+            </p>
+          </div>
+        </form>
       </div>
-      <button type="submit" class="loginbtn">Sign In</button>
-      <button routerLink="/signUp" class="signupbtn">Sign Up</button>
-    </form>
+    </div>
   </div>
+</div>

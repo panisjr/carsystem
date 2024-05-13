@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'signIn', component: SignInComponent, title: 'Sign In' },
   { path: '', redirectTo: '/signIn', pathMatch: 'full' },
   { path: 'customerDashboard', component: HomeComponent, title: 'Home', canActivate:[AuthGuard] },
-  { path: 'signUp', component: SignUpComponent, title: 'Sign Up' },
+  { path: 'signUp', component: SignUpComponent, title: 'Sign Up on AutoGaurdian' },
   { path: 'adminDashboard', component: AdminComponent, title: 'Admin Dashboard', canActivate:[AuthGuard]},
   { path: 'costumerManagement', component: CustomerComponent, title: 'Costumer Management' },
 ];
