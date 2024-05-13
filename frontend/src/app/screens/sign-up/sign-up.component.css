@@ -16,6 +16,9 @@ form{
 .text-primary{
   cursor: pointer;
 }
+.text1{
+  margin-top: 20px;
+}
 .signUpInput{
   padding: 10px;
   margin-bottom: 10px;
@@ -43,7 +46,8 @@ form{
   font-family: "Rowdies", sans-serif;
 }
 .signupbtn {
-  width: 124px;
+  width: 100%;
+  font-size: large;
   height: 52px;
   background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
   border: none;
