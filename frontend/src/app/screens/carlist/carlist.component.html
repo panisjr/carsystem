@@ -69,12 +69,13 @@
                 <th>Fuel Type</th>
                 <th>Transmission Type</th>
                 <th>Quantity</th>
+                <!-- <th>Actions</th> -->
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let car of cars">
                 <td>{{ car.make }}</td>
-                <td>{{ car.model }}</td>
+                <td>{{ car.model }}</td>    
                 <td>{{ car.year }}</td>
                 <td>{{ car.VIN }}</td>
                 <td>{{ car.license_plate_number }}</td>
@@ -83,6 +84,10 @@
                 <td>{{ car.fuel_type }}</td>
                 <td>{{ car.transmission_type }}</td>
                 <td>{{ car.quantity }}</td>
+                <!-- <td>
+                    <button class="btn btn-sm btn-primary" (click)="editCar(car)">Update</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteCar(car)">Delete</button>
+                </td> -->
             </tr>
         </tbody>
     </table>

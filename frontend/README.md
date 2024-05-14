@@ -33,3 +33,5 @@ npm i bootstrap-icons
 npm install ngx-cookie-service
 npm i --save-dev @types/jquery
 npm install datatables.net-dt
+ng add angular-datatables
+

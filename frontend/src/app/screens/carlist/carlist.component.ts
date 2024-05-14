@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-carlist',
   templateUrl: './carlist.component.html',
-  styleUrls: ['./carlist.component.css'] // Use 'styleUrls' instead of 'styleUrl'
+  styleUrls: ['./carlist.component.css'] 
 })
 export class CarlistComponent {
 
@@ -36,6 +36,8 @@ export class CarlistComponent {
       pagingType: 'full_numbers',
       pageLength: 10
     };
+    
+    this.fetchCars();
     this.getCars();
   }
 
@@ -43,7 +45,7 @@ export class CarlistComponent {
     this.serverService.getCars().subscribe(
       (response: any) => {
         this.cars = response;
-        this.dtTrigger.next(null); // Trigger datatable refresh after data fetch
+        this.dtTrigger.next(null);
       },
       (error) => {
         console.error('Error fetching cars:', error);
@@ -82,6 +84,12 @@ export class CarlistComponent {
         }, 3500);
       }
     );
+  }
+
+  fetchCars() {
+    this.serverService.getCars().subscribe((data: any) => {
+      this.cars = data;
+    });
   }
 
 }
