@@ -8,11 +8,23 @@ import { Observable } from 'rxjs';
 export class ServerService {
   private apiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   //carlist
   addCar(data: any) {
     return this.http.post(`${this.apiUrl}/cars`, data);
+  }
+
+  getCars() {
+    return this.http.get(`${this.apiUrl}/cars`);
+  }
+
+  deleteCar(carId: number) {
+    return this.http.delete(`${this.apiUrl}/cars/${carId}`);
+  }
+
+  updateCar(car: any) {
+    return this.http.put(`${this.apiUrl}/cars/${car.id}`, car);
   }
 
   // Customer
@@ -80,9 +92,5 @@ export class ServerService {
   deleteAllHistory(): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteAllHistory`);
   }
-  getCars() {
-    return this.http.get(`${this.apiUrl}/cars`);
-  }
 
-  
 }

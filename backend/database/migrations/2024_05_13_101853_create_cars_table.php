@@ -9,7 +9,7 @@ class CreateCarsTable extends Migration
     public function up()
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->car_id()->primary();
+            $table->id();
             $table->string('make');
             $table->string('model');
             $table->unsignedSmallInteger('year');
@@ -20,7 +20,7 @@ class CreateCarsTable extends Migration
             $table->enum('fuel_type', ['Gasoline', 'Diesel', 'Electric']);
             $table->enum('transmission_type', ['Automatic', 'Manual']);
             $table->enum('status', ['Available'])->default('Available');
-            $table->int('quantity')->default(1);
+            $table->integer('quantity')->default(1);
             $table->timestamps();
         });
     }
