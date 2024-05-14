@@ -3,6 +3,7 @@ import { ServerService } from '../../services/server.service';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-carlist',
@@ -38,7 +39,7 @@ export class CarlistComponent implements OnInit, OnDestroy {
   };
 
   cars: any[] = [];
-  dtoptions: any = {}; // Add this for datatable options
+  dtoptions: any = {};
   dtTrigger = new Subject<any>();
   errorMessage: string | null = null;
   successMessage: string | null = null;
@@ -62,6 +63,7 @@ export class CarlistComponent implements OnInit, OnDestroy {
   fetchCars() {
     this.serverService.getCars().subscribe((data: any) => {
       this.cars = data;
+      this.dtTrigger.next(null); // Trigger DataTables rendering
     });
   }
 
@@ -101,8 +103,6 @@ export class CarlistComponent implements OnInit, OnDestroy {
 
   openEditModal(car: any) {
     this.editCarData = { ...car };
-    // Trigger modal opening logic here
-    // This could be done via a template reference variable or using a UI library method
   }
 
   updateCar() {
