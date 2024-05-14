@@ -1,128 +1,87 @@
-body {
-  font-family: "poppins";
+.navBar {
+  background-color: #161721;
+  color: white;
+
 }
-.title {
-  position: absolute;
-  width: 392px;
-  height: 45px;
-  left: 163px;
-  top: 30px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: clamp(12px, 4vw, 30px);
-  line-height: 45px;
+.logo{
+  width: 80px;
+ }
+ .selection {
+   /* border: 1px solid red; */
+   display: flex;
+   align-items: start;
+   padding: 20px;
+   flex-direction: column;
+ }
+ 
+ .signUp {
+  /* font-family: "Jaro", sans-serif; */
+  font-family: "Rowdies", sans-serif;
 }
-nav {
-  position: sticky;
-  width: 100%;
-  height: 100px;
-  right: 0px;
-  top: 0px;
-  padding: 10px 90px;
-  background: linear-gradient(217.64deg, #9181f4 -5.84%, #97e7e1 106.73%);
+.logoutBtn{
+  margin-top: 100px;
 }
-section {
-  position: sticky;
+.navBtn, .logoutBtn {
+  color: white;
+  padding: 5px 15px 0 15px;
+
+}
+.navBtn:hover, .logoutBtn:hover {
+  background-color: white;
+  border-radius: 5px;
+  color: #161721;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.navBtn.active , .logoutBtn.active{
+  background-color: white;
+  border-radius: 5px;
+  color: #161721;
+}
+.border-bottom{
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+.profile{
+  width: 40px;
+  border-radius: 50%;
+}
+.newCar{
+  height: 170px;
   width: 280px;
-  height: 857px;
-  right: 1640px;
-  top: 100px;
-  background: linear-gradient(217.64deg, #4b2efc -5.84%, #23f0e1 106.73%);
+  background: linear-gradient(190deg, #34dacf, #3d2da2);
 }
-.logo {
-  position: absolute;
-  width: 75px;
-  height: 75px;
-  left: 39px;
-  top: 16px;
-  border-radius: 75px;
+.users{
+  height: 170px;
+  width: 280px;
+  background: linear-gradient(190deg, #ff9c23, #992b36 );
 }
-
-.background {
-  position: absolute;
-  width: 1920px;
-  height: 857px;
-  right: 0px;
-  top: 100px;
-  background: linear-gradient(217.64deg, #9181f4 -5.84%, #97e7e1 106.73%);
+.newRent{
+  height: 170px;
+  width: 280px;
+  background: linear-gradient(190deg, #9cff23, #389428 );
 }
-table{
-    width: 100%;
-    background-color: gray;
+.underMaintenance{
+  height: 170px;
+  width: 280px;
+  background: linear-gradient(190deg, #ff23f4, #772894 );
 }
-.greeting {
-  position: absolute;
-  width: 172px;
-  height: 30px;
-  left: 1700px;
-  top: 35px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 30px;
-  color: #000000;
+.scale{
+  width: 180px;
+  height: 120px;
+  color: white;
 }
-section ul li {
-  text-decoration: none;
-  list-style-type: none;
+.rentIcon{
+  width: 45px;
 }
-section ul li button {
-  position: relative;
-  line-height: 70px;
-  color: #000000;
-  padding: 12px 30px;
-  text-decoration: none;
-  font-size: clamp(12px, 2vw, 20px);
-  background-color: transparent;
-  border: none;
-  background: none;
-  font-weight: 800;
-  width: 300px;
-  left: -10%;
+.bi-car-front, .bi-people, .bi-journal-arrow-up, .bi-journal-arrow-down{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px ;
+  height: 40px ;
 }
-.profile {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  left: 1665px;
-  top: 25px;
-  border-radius: 90px;
-}
-@media (min-width: 1024px) {
-  .greeting {
-    left: 90%;
-    animation: ease-out 0.8;
-  }
-
-  .background {
-    right: 0;
-    animation: ease-out 0.8;
-  }
-
-  section {
-    width: 300px;
-    right: 0;
-    animation: ease-out 0.8;
-  }
-}
-
-@media (max-width: 768px) {
-  .greeting {
-    left: 70%;
-    animation: ease-out 0.8;
-  }
-  .title {
-    left: 24%;
-    animation: ease-out 0.8;
-  }
-  section {
-    width: 175px;
-    animation: ease-out 0.8;
-  }
-  section ul li button {
-    font-size: 10px;
-    left: -65%;
-    animation: ease-out 0.8;
-  }
+.rightSideContent{
+  overflow-y: auto;
+  height: 729px;
 }

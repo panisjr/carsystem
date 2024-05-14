@@ -1,19 +1,122 @@
-<body>
-    <nav>
-        <img src="assets/logo1.jpg" class="logo" alt="Dynamic Image">
-    <div class="title">Car Management System</div>
-    <div class="greeting">Hello Admin!</div>
-    </nav>
-    <img src="assets/profilepic.png" class="profile" alt="profilepicture">
-    <div class="background"></div>
-    <section>
-        <ul>
-            <li><button>Vehicle Management</button></li>
-            <li><button>Costumer Management</button></li>
-            <li><button>Sales/Rental Management</button></li>
-            <li><button>Maintenance Scheduling</button></li> 
-            <li><button>Reporting</button></li>     
-            <li><button (click)="logout()">Logout</button></li>     
-        </ul>
-    </section>
-    </body>
+<div class="container-fluid">
+  <div class="row vh-100">
+    <div class="col-sm-6 col-md-5 col-lg-2 navBar">
+      <div class="input-group align-items-center justify-content-center">
+        <img class="logo" src="/assets/logo.png" />
+        <h3 class="signUp text-center">AutoGaurdian</h3>
+      </div>
+
+      <nav class="selection mt-3">
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          routerLinkActive="active"
+          routerLink="/adminDashboard"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <h3 class="bi bi-house"></h3>
+          <p class="ms-4 p-2">Dashboard</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          routerLinkActive="active"
+          routerLink="/carlist"
+        >
+        <h3 class="bi bi-car-front-fill"></h3>
+          <p class="ms-4 p-2">Vehicle Management</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          routerLink="/costumerManagement"
+        >
+          <h3 class="bi bi-person-gear"></h3>
+          <p class="ms-4 p-2">User Management</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/transaction']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-bar-chart"></h3>
+          <p class="ms-4 p-2">Sales/Rental Management</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/history']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-receipt"></h3>
+          <p class="ms-4 p-2">Maintenance Scheduling</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/history']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-clock-history"></h3>
+          <p class="ms-4 p-2">Reporting</p>
+        </div>
+        <div
+          class="logoutBtn d-flex align-items-center justify-content-center"
+          (click)="logout()"
+        >
+          <h3 class="bi bi-box-arrow-left"></h3>
+          <p class="ms-4 p-2">Logout</p>
+        </div>
+      </nav>
+    </div>
+    <div
+      class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
+    >
+      <div class="col-12 d-flex justify-content-between border-bottom">
+        <div class="p-3 text-center ms-5">
+          <h2>Dashboard</h2>
+        </div>
+        <div class="p-2 me-3">
+          <img src="/assets/profilepic.png" alt="profile" class="profile" />
+        </div>
+      </div>
+      <div class="col-12 d-flex align-items-center justify-content-around mt-5">
+        <div class="newCar p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="text-white">+3</h2>
+            <h1 class="bi bi-car-front text-white"></h1>
+          </div>
+          <div class="d-flex">
+            <h5 class="text-white">New Car</h5>
+            <img class="scale" src="/assets/graphics.png" alt="scale" />
+          </div>
+        </div>
+        <div class="users p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="text-white">+3</h2>
+            <h1 class="bi bi-people text-white"></h1>
+          </div>
+          <div class="d-flex">
+            <h5 class="text-white">New User</h5>
+            <img class="scale" src="/assets/graphics.png" alt="scale" />
+          </div>
+        </div>
+        <div class="newRent p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="text-white">+3</h2>
+            <img src="/assets/rent.png" alt="rent icon" class="rentIcon" />
+          </div>
+          <div class="d-flex">
+            <h5 class="text-white">New Rent</h5>
+            <img class="scale" src="/assets/graphics.png" alt="scale" />
+          </div>
+        </div>
+        <div class="underMaintenance p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="text-white">+3</h2>
+            <h1 class="bi bi-tools text-white"></h1>
+          </div>
+          <div class="d-flex">
+            <h5 class="text-white">Under Maintenance</h5>
+            <img class="scale" src="/assets/graphics.png" alt="scale" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

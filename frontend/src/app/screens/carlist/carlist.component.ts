@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { ServerService } from '../../services/server.service';
+import { TokenService } from '../../services/token.service';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-carlist',
   templateUrl: './carlist.component.html',
-  styleUrls: ['./carlist.component.css'] 
+  styleUrls: ['./carlist.component.css']
 })
 export class CarlistComponent {
-
   carData = {
     make: '',
     model: '',
@@ -19,7 +20,7 @@ export class CarlistComponent {
     color: '',
     fuel_type: '',
     transmission_type: '',
-    quantity: null
+    quantity: null,
   };
 
   cars: any[] = [];
@@ -29,14 +30,14 @@ export class CarlistComponent {
   successMessage: string | null = null;
   loading: boolean = false;
 
-  constructor(private serverService: ServerService) { }
+  constructor(private serverService: ServerService, private token: TokenService, private router: Router) { }
 
   ngOnInit(): void {
     this.dtoptions = {
       pagingType: 'full_numbers',
       pageLength: 10
     };
-    
+
     this.fetchCars();
     this.getCars();
   }
@@ -73,12 +74,13 @@ export class CarlistComponent {
           color: '',
           fuel_type: '',
           transmission_type: '',
-          quantity: null
+          quantity: null,
         };
       },
       (error) => {
         this.loading = false;
-        this.errorMessage = error.error.message || 'An error occurred while adding the car.';
+        this.errorMessage =
+          error.error.message || 'An error occurred while adding the car.';
         setTimeout(() => {
           this.errorMessage = null;
         }, 3500);
@@ -91,5 +93,11 @@ export class CarlistComponent {
       this.cars = data;
     });
   }
+  logout() {
+    this.token.remove();
+    this.router.navigate(['/signIn']);
+  }
 
 }
+
+
