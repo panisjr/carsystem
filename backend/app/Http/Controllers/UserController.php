@@ -39,22 +39,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Check if an existing user with the provided email and Deactivated status exists
-        $existingDeactivatedUser = User::where('email', $request->email)->where('status', 'Deactivated')->first();
+        // Check if an existing user with the provided email and deactivated status exists
+        $existingDeactivatedUser = User::where('email', $request->email)->where('status', 'deactivated')->first();
 
-        // Check if an existing user with the provided email and Active status exists
-        $existingActiveUser = User::where('email', $request->email)->where('status', 'Active')->first();
+        // Check if an existing user with the provided email and active status exists
+        $existingActiveUser = User::where('email', $request->email)->where('status', 'active')->first();
 
         if ($existingActiveUser) {
-            // If an Active user with the provided email exists, return an error response
+            // If an active user with the provided email exists, return an error response
             return response()->json([
                 'success' => false,
-                'message' => 'A user with this email already exists and is Active.',
+                'message' => 'A user with this email already exists and is active.',
             ], 422);
         }
 
         if ($existingDeactivatedUser) {
-            // If a Deactivated user with the provided email exists, create a new account using the same email
+            // If a deactivated user with the provided email exists, create a new account using the same email
             $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profile']);
 
             // Create new user without validation
@@ -67,7 +67,7 @@ class UserController extends Controller
             ]);
         }
 
-        // If no Deactivated user with the provided email exists and there's no Active user, perform the regular validation
+        // If no deactivated user with the provided email exists and there's no active user, perform the regular validation
 
         $validator = Validator::make($request->all(), [
             'firstname' => 'required|regex:/^[a-zA-Z\s\-\.]+$/|not_regex:/[^\x00-\x7F]+/|max:255',
@@ -221,23 +221,23 @@ class UserController extends Controller
 
         // Check if the user was found
         if ($user) {
-            // Check if the user is being Deactivated and there is an Active user with the same email
-            if ($user->status === "Deactivated" && User::where('email', $user->email)->where('status', 'Active')->exists()) {
+            // Check if the user is being deactivated and there is an active user with the same email
+            if ($user->status === "deactivated" && User::where('email', $user->email)->where('status', 'active')->exists()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'You must delete the existing email with status of Active first before reactivating the user.',
+                    'message' => 'You must delete the existing email with status of active first before reactivating the user.',
                 ], 422);
             }
 
             // Toggle the user's status
-            $user->status = $user->status === "Active" ? "Deactivated" : "Active";
+            $user->status = $user->status === "active" ? "deactivated" : "active";
 
             // Save the updated user
             $user->save();
 
             return response()->json([
                 'success' => true,
-                'message' => 'User ' . ($user->status === "Active" ? 'Active' : 'Deactivated') . ' successfully!',
+                'message' => 'User ' . ($user->status === "active" ? 'active' : 'deactivated') . ' successfully!',
                 'data' => $user,
             ]);
         }
@@ -263,14 +263,14 @@ class UserController extends Controller
             $response['message'] = 'Email not found';
             return response()->json($response);
         }
-        // Check if there's an Active user
-        $activeUser = $users->firstWhere('status', 'Active');
+        // Check if there's an active user
+        $activeUser = $users->firstWhere('status', 'active');
 
         if (!$activeUser) {
-            // If no Active user found
+            // If no active user found
             $response['status'] = 0;
             $response['code'] = 403; // Forbidden status code
-            $response['message'] = 'No Active user found with this email';
+            $response['message'] = 'No active user found with this email';
             return response()->json($response);
         }
         // Attempt login with the credentials

@@ -1,17 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../../services/server.service';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { DataTableDirective } from 'angular-datatables';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-carlist',
   templateUrl: './carlist.component.html',
-  styleUrls: ['./carlist.component.css']
+  styleUrls: ['./carlist.component.css'],
 })
-export class CarlistComponent implements OnInit, OnDestroy {
+export class CarlistComponent implements OnInit {
   carData = {
+    id: 0,
     make: '',
     model: '',
     year: null,
@@ -25,7 +26,6 @@ export class CarlistComponent implements OnInit, OnDestroy {
   };
 
   editCarData = {
-    id: null,
     make: '',
     model: '',
     year: null,
@@ -45,12 +45,17 @@ export class CarlistComponent implements OnInit, OnDestroy {
   successMessage: string | null = null;
   loading: boolean = false;
   userData: any = {};
-  constructor(private serverService: ServerService, private token: TokenService, private router: Router) { }
+  editing: boolean = false;
+  constructor(
+    private serverService: ServerService,
+    private token: TokenService,
+    private router: Router, private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.dtoptions = {
       pagingType: 'full_numbers',
-      pageLength: 10
+      pageLength: 10,
     };
 
     this.fetchCars();
@@ -58,13 +63,12 @@ export class CarlistComponent implements OnInit, OnDestroy {
     this.userData = data.user;
   }
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
-
   fetchCars() {
     this.serverService.getCars().subscribe((data: any) => {
       this.cars = data;
+      if(this.cars){
+    this.dtTrigger.unsubscribe();
+      }
       this.dtTrigger.next(null); // Trigger DataTables rendering
     });
   }
@@ -74,13 +78,14 @@ export class CarlistComponent implements OnInit, OnDestroy {
     this.serverService.addCar(this.carData).subscribe(
       (response: any) => {
         this.loading = false;
-        this.successMessage = 'Car added successfully.';
+        this.toastr.success(response.message);
         this.fetchCars();
         setTimeout(() => {
           this.successMessage = null;
         }, 3500);
 
         this.carData = {
+          id: 0,
           make: '',
           model: '',
           year: null,
@@ -92,65 +97,71 @@ export class CarlistComponent implements OnInit, OnDestroy {
           transmission_type: '',
           quantity: null,
         };
+        this.fetchCars();
       },
       (error) => {
         this.loading = false;
-        this.errorMessage = error.error.message || 'An error occurred while adding the car.';
-        setTimeout(() => {
-          this.errorMessage = null;
-        }, 3500);
+        this.toastr.error(error,'Error adding car!');
+        this.toastr.error('An error occurred while adding the car.');
       }
     );
   }
-
-  openEditModal(car: any) {
-    this.editCarData = { ...car };
+  setEdit(carID: number) {
+    this.editing = true;
+    const car = this.cars.find((c) => c.id === carID);
+    if (car) {
+      this.carData = { ...car };
+    }
   }
-
-  updateCar() {
+  updateCar(carID: number) {
     this.loading = true;
-    this.serverService.updateCar(this.editCarData).subscribe(
+    console.log(this.carData)
+    this.serverService.updateCar(this.carData).subscribe(
       (response: any) => {
         this.loading = false;
-        this.successMessage = 'Car updated successfully.';
+        this.toastr.success(response.message);
         this.fetchCars();
-        setTimeout(() => {
-          this.successMessage = null;
-        }, 3500);
       },
       (error) => {
         this.loading = false;
-        this.errorMessage = error.error.message || 'An error occurred while updating the car.';
-        setTimeout(() => {
-          this.errorMessage = null;
-        }, 3500);
+        this.toastr.error( error,'Error updating car:');
+          this.toastr.error('An error occurred while updating the car.');
       }
     );
   }
 
   deleteCar(car: any) {
-    if (confirm("Are you sure you want to delete this car?")) {
-      this.serverService.deleteCar(car.id).subscribe(
+    console.log(car)
+      this.serverService.deleteCar(car).subscribe(
         (response: any) => {
           this.fetchCars();
-          this.successMessage = 'Car deleted successfully.';
-          setTimeout(() => {
-            this.successMessage = null;
-          }, 3500);
+          this.toastr.success(response.message);
         },
         (error) => {
-          console.error('Error deleting car:', error);
-          this.errorMessage = error.message || 'An error occurred while deleting the car.';
-          setTimeout(() => {
-            this.errorMessage = null;
-          }, 3500);
+          this.toastr.error( error,'Error deleting car:');
+          this.toastr.error('An error occurred while deleting the car.');
         }
       );
-    }
   }
 
   logout() {
     this.token.remove();
     this.router.navigate(['/signIn']);
+  }
+  resetForm() {
+    this.carData = {
+      id: 0,
+      make: '',
+      model: '',
+      year: null,
+      VIN: '',
+      license_plate_number: '',
+      price: null,
+      color: '',
+      fuel_type: '',
+      transmission_type: '',
+      quantity: null,
+    };
+    this.editing = false;
   }
 }

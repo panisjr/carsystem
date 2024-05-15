@@ -36,3 +36,7 @@ npm install datatables.net-dt
 ng add angular-datatables
 
 npm install ng2-file-upload --save
+<!-- for toarter -->
+<!-- follow the link for the setup https://www.npmjs.com/package/ngx-toastr#setup -->
+npm install ngx-toastr --save   
+npm install @angular/animations --save

@@ -50,6 +50,9 @@ export class ServerService {
   deactivate(userId: number, data: any) {
     return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);
   }
+  // End CRUD User Management 
+
+  // Displaying Data in Admin Dashboard
   getTotalAccounts(): Observable<any> {
     return this.http.get<{ totalAccounts: number; totalBooks: number }>(
       `${this.apiUrl}/getTotalAccounts`
@@ -60,7 +63,12 @@ export class ServerService {
       `${this.apiUrl}/users/todayRegisteredUsersCount`
     );
   }
-  // End CRUD User Management 
+  getTodayRegisteredCarsCount() {
+    return this.http.get<{ count: number }>(
+      `${this.apiUrl}/users/todayRegisteredCarsCount`
+    );
+  }
+  //End Displaying Data in Admin Dashboard
 
   // History
   history(

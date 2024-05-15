@@ -35,13 +35,14 @@ import { RouterModule } from '@angular/router';
     MaintenanceSchedulingComponent,
   ],
   imports: [
-    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     RouterModule,
     HttpClientModule,
     DataTablesModule,
+    ToastrModule.forRoot(), 
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('jwt_token'),
