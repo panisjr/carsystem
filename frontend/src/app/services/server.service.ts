@@ -44,8 +44,8 @@ export class ServerService {
   updateUser(userId: number, data: any) {
     return this.http.put(`${this.apiUrl}/updateUser/${userId}`, data);
   }
-  deleteUser(userId: number, data: any) {
-    return this.http.delete(`${this.apiUrl}/deleteUser/${userId}`, data);
+  deleteUser(userId: number) {
+    return this.http.delete(`${this.apiUrl}/deleteUser/${userId}`);
   }
   deactivate(userId: number, data: any) {
     return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);

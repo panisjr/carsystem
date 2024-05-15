@@ -32,7 +32,7 @@ signIn() {
   this.loading = true;
   this.serverService.signIn(userData).subscribe(
     (response: any) => {
-      if (response) {
+      this.successMessage = response.message;
       this.token.handle(response.access_token, response.user);
       const role = response.user.role;
         this.loading = false;
@@ -46,18 +46,11 @@ signIn() {
           default:
             this.router.navigate(['/']);
             break;
-        }
-      } else {
-        this.loading = false;
-        this.errorMessage = 'Please make sure you already have an account.';
-        setTimeout(() => {
-          this.errorMessage = null;
-        }, 3500);
       }
     },
     (error) => {
       this.loading = false;
-     this.errorMessage = error.error.error;
+     this.errorMessage = error.error.message;
      setTimeout(() => {
       this.errorMessage = null;
      }, 3500);
