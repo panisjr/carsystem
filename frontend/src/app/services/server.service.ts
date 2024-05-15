@@ -10,13 +10,19 @@ export class ServerService {
 
   constructor(private http: HttpClient) { }
 
-  //carlist
+  // Car list
   addCar(data: any) {
-    return this.http.post(`${this.apiUrl}/cars`, data);
+    const formData = new FormData();
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(key, data[key]);
+      }
+    }
+    return this.http.post(`${this.apiUrl}/cars`, formData);
   }
 
-  getCars() {
-    return this.http.get(`${this.apiUrl}/cars`);
+  getCars(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/cars`);
   }
 
   deleteCar(carId: number) {
@@ -24,33 +30,40 @@ export class ServerService {
   }
 
   updateCar(car: any) {
-    return this.http.put(`${this.apiUrl}/cars/${car.id}`, car);
+    const formData = new FormData();
+    for (const key in car) {
+      if (car.hasOwnProperty(key)) {
+        formData.append(key, car[key]);
+      }
+    }
+    return this.http.put(`${this.apiUrl}/cars/${car.id}`, formData);
   }
 
-  // Customer
-
+  // Customer sign up and sign in
   signUp(formData: FormData) {
-    return this.http.post<any>(`${this.apiUrl}/signUp`, formData);  
+    return this.http.post<any>(`${this.apiUrl}/signUp`, formData);
   }
+
   signIn(data: any) {
     return this.http.post(`${this.apiUrl}/signIn`, data);
   }
-  // End Sign In and Sign Up
 
   // CRUD User Management
   getUsers() {
     return this.http.get(`${this.apiUrl}/getUsers`);
   }
+
   updateUser(userId: number, data: any) {
     return this.http.put(`${this.apiUrl}/updateUser/${userId}`, data);
   }
+
   deleteUser(userId: number) {
     return this.http.delete(`${this.apiUrl}/deleteUser/${userId}`);
   }
+
   deactivate(userId: number, data: any) {
     return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);
   }
-  // End CRUD User Management 
 
   // Displaying Data in Admin Dashboard
   getTotalAccounts(): Observable<any> {
@@ -58,17 +71,18 @@ export class ServerService {
       `${this.apiUrl}/getTotalAccounts`
     );
   }
+
   getTodayRegisteredUsersCount() {
     return this.http.get<{ count: number }>(
       `${this.apiUrl}/users/todayRegisteredUsersCount`
     );
   }
+
   getTodayRegisteredCarsCount() {
     return this.http.get<{ count: number }>(
       `${this.apiUrl}/users/todayRegisteredCarsCount`
     );
   }
-  //End Displaying Data in Admin Dashboard
 
   // History
   history(
@@ -89,19 +103,21 @@ export class ServerService {
     };
     return this.http.post<any>(`${this.apiUrl}/history`, payload);
   }
+
   getHistory(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/getHistory`);
   }
+
   deleteHistory(historyID: number) {
     return this.http.delete(`${this.apiUrl}/deleteHistory/${historyID}`);
   }
+
   deleteAllHistory(): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteAllHistory`);
   }
 
-  // Sales and Revue Reports
+  // Sales and Revenue Reports
   getReportData(): Observable<any> {
-    // Replace with your actual API endpoint
     return this.http.get(`${this.apiUrl}/sales`);
   }
 }
