@@ -22,7 +22,7 @@
           <h1 class="signUp text-center">AutoGaurdian</h1>
         </div>
         <h1 class="signUp text-center mb-5">SIGN UP</h1>
-        <form (ngSubmit)="signUp()">
+        <form (ngSubmit)="signUp()" >
           <div>
             <input
               type="text"
@@ -86,6 +86,9 @@
               [(ngModel)]="confirm_password"
               placeholder="Confirm Password"
             />
+          </div>
+          <div>
+            <input type="file" (change)="onFileSelected($event)" />
           </div>
           <div >
             <button type="submit" class="signupbtn">Sign Up</button>

@@ -20,7 +20,7 @@ class CreateCarsTable extends Migration
             $table->enum('fuel_type', ['Gasoline', 'Diesel', 'Electric']);
             $table->enum('transmission_type', ['Automatic', 'Manual']);
             $table->enum('status', ['Available'])->default('Available');
-            $table->unsignedInteger('quantity')->default(1);
+            $table->integer('quantity')->default(1);
             $table->timestamps();
         });
     }

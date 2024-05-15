@@ -33,7 +33,7 @@ signIn() {
   this.serverService.signIn(userData).subscribe(
     (response: any) => {
       if (response) {
-      this.token.handle(response.access_token);
+      this.token.handle(response.access_token, response.user);
       const role = response.user.role;
         this.loading = false;
         switch (role) {

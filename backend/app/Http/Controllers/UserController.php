@@ -36,7 +36,7 @@ class UserController extends Controller
         $count = User::whereDate('created_at', $today)->count();
         return response()->json(['count' => $count]);
     }
-  
+
     public function store(Request $request)
     {
         // Check if an existing user with the provided email and deactivated status exists
@@ -55,7 +55,7 @@ class UserController extends Controller
 
         if ($existingDeactivatedUser) {
             // If a deactivated user with the provided email exists, create a new account using the same email
-            $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
+            $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profile']);
 
             // Create new user without validation
             $user = User::create($userData);
@@ -77,7 +77,7 @@ class UserController extends Controller
             'contact' => ['string', 'regex:/^09\d{9}$/', 'max:11'], // Regular expression for Philippine number starting with 09
             'password' => 'required|string|min:8|max:20|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]*$/|not_regex:/[^\x00-\x7F]+/',
             'confirm_password' => 'required|string|same:password',
-            'role' => ['required', Rule::in(['Admin', 'Borrower', 'Librarian'])],
+            'role' => ['required', Rule::in(['Admin', 'Customer'])],
         ]);
 
 
@@ -88,19 +88,33 @@ class UserController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
+        // Validate the request
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as per your requirements
+        ]);
+
+        // Store the file
+        $uploadedFile = $request->file('file');
+        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+        $filePath = $uploadedFile->storeAs('uploads', $fileName);
 
         // Only include fields that should be stored in the database
         $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
 
+        // Add the file path to the user data
+        $userData['profile'] = $filePath;
+
         // Create new user
         $user = User::create($userData);
-        // Fetch the ID from the created user
+
         return response()->json([
+            'file_path' => $filePath,
             'success' => true,
             'message' => 'User created successfully.',
             'data' => $user,
         ]);
     }
+
     public function show(string $id)
     {
         $user = $this->user->find($id);

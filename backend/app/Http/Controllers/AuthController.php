@@ -39,34 +39,9 @@ class AuthController extends Controller
     {
         // Check if an existing user with the provided email and deactivated status exists
         $existingDeactivatedUser = User::where('email', $request->email)->where('status', 'deactivated')->first();
-
-        // Check if an existing user with the provided email and active status exists
-        $existingActiveUser = User::where('email', $request->email)->where('status', 'active')->first();
-
-        if ($existingActiveUser) {
-            // If an active user with the provided email exists, return an error response
-            return response()->json([
-                'success' => false,
-                'message' => 'A user with this email already exists and is active.',
-            ], 422);
-        }
-
-        if ($existingDeactivatedUser) {
-            // If a deactivated user with the provided email exists, create a new account using the same email
-            $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
-
-            // Create new user without validation
-            $user = User::create($userData);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'User created successfully',
-                'data' => $user,
-            ]);
-        }
-
-        // If no deactivated user with the provided email exists and there's no active user, perform the regular validation
-
+        // Check if an existing user with the provided email and Active status exists
+        $existingActiveUser = User::where('email', $request->email)->where('status', 'Active')->first();
+        // Perform the regular validation
         $validator = Validator::make($request->all(), [
             'firstname' => 'required|regex:/^[a-zA-Z\s\-\.]+$/|not_regex:/[^\x00-\x7F]+/|max:255',
             'middlename' => 'nullable|regex:/^[A-Z]\.$/|not_regex:/[^\x00-\x7F]+/|max:2',
@@ -76,26 +51,61 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|max:20|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]*$/|not_regex:/[^\x00-\x7F]+/',
             'confirm_password' => 'required|string|same:password',
             'role' => ['required', Rule::in(['Admin', 'Customer'])],
+            'profileFile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as per your requirements
         ]);
-
-
+        if ($existingActiveUser) {
+            // If an Active user with the provided email exists, return an error response
+            return response()->json([
+                'success' => false,
+                'message' => 'A user with this email already exists and is Active.',
+            ], 422);
+        }
+        if ($existingDeactivatedUser) {
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validation failed Make sure to fill the fields properly.',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+            // Store the file
+            $uploadedFile = $request->file('profileFile'); // Ensure this matches the key used in formData.append in Angular
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $filePath = $uploadedFile->storeAs('uploads', $fileName);
+            // Only include fields that should be stored in the database
+            $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profileFile']);
+            // Add the file path to the user data
+            $userData['profileFile'] = $filePath;
+            // Create new user
+            $user = User::create($userData);
+            return response()->json([
+                'file_path' => $filePath,
+                'success' => true,
+                'message' => 'User created successfully.',
+                'data' => $user,
+            ]);
+        }
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Validation failed! Make sure to fill the fields properly.',
+                'message' => 'Validation failed Make sure to fill the fields properly.',
                 'errors' => $validator->errors(),
             ], 422);
         }
-
+        // Store the file
+        $uploadedFile = $request->file('profileFile'); // Ensure this matches the key used in formData.append in Angular
+        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+        $filePath = $uploadedFile->storeAs('uploads', $fileName);
         // Only include fields that should be stored in the database
-        $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
-
+        $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profileFile']);
+        // Add the file path to the user data
+        $userData['profileFile'] = $filePath;
         // Create new user
         $user = User::create($userData);
-
         return response()->json([
+            'file_path' => $filePath,
             'success' => true,
-            'message' => 'User created successfully',
+            'message' => 'User created successfully.',
             'data' => $user,
         ]);
     }
@@ -108,7 +118,6 @@ class AuthController extends Controller
     {
         return response()->json(auth()->user());
     }
-
     /**
      * Log the user out (Invalidate the token).
      *
@@ -117,10 +126,8 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
-
     /**
      * Refresh a token.
      *
