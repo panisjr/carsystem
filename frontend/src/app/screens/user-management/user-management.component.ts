@@ -51,6 +51,9 @@ export class UserManagementComponent implements OnInit {
     this.serverService.getUsers().subscribe(
       (response: any) => {
         this.users = response;
+        if (this.users) {
+          this.dtTrigger.unsubscribe();
+        }
         this.dtTrigger.next(null); // Trigger datatable refresh after data fetch
       },
       (error) => {
@@ -80,11 +83,12 @@ export class UserManagementComponent implements OnInit {
     }
     this.serverService.signUp(formData).subscribe(
       (response: any) => {
-        this.toastr.success(response.message)
-          this.resetForm();
+        this.toastr.success(response.message);
+        this.getUsers();
+        this.resetForm();
       },
       (error) => {
-        this.toastr.error(error.error.message)
+        this.toastr.error(error.error.message);
       }
     );
   }
@@ -107,7 +111,10 @@ export class UserManagementComponent implements OnInit {
   deactivate(accountId: number, accountStatus: any) {
     if (accountId === this.userData.id) {
       this.loading = false;
-      this.toastr.error('Your are currently logged in!','You cannot deactivate your own account.')
+      this.toastr.error(
+        'Your are currently logged in!',
+        'You cannot deactivate your own account.'
+      );
       setTimeout(() => {
         this.errorMessage = null;
       }, 3500);
@@ -117,7 +124,7 @@ export class UserManagementComponent implements OnInit {
     this.serverService.deactivate(accountId, accountStatus).subscribe(
       (response: any) => {
         this.loading = false;
-        this.toastr.success(response.message)
+        this.toastr.success(response.message);
         this.status = false;
         this.getUsers();
       },
@@ -143,10 +150,10 @@ export class UserManagementComponent implements OnInit {
     this.loading = true;
     if (accountId === this.userData.id) {
       this.loading = false;
-      this.toastr.error('You cannot delete your own account.','Error Deleting Account!')
-      setTimeout(() => {
-        this.errorMessage = null;
-      }, 3500);
+      this.toastr.error(
+        'You cannot delete your own account.',
+        'Error Deleting Account!'
+      );
       return; // Stop further execution
     }
     this.serverService.deleteUser(accountId).subscribe(
@@ -171,8 +178,8 @@ export class UserManagementComponent implements OnInit {
           .subscribe(() => {
             console.log('Action added to history successfully');
           });
-          this.resetForm();
-          this.getUsers();
+        this.resetForm();
+        this.getUsers();
       },
       (error) => {
         this.loading = false;
@@ -193,7 +200,6 @@ export class UserManagementComponent implements OnInit {
       this.role = account.role;
       this.profileFile = account.profileFile;
       this.id = account.id;
-      
     }
   }
   // To update user Credentials
@@ -221,7 +227,10 @@ export class UserManagementComponent implements OnInit {
       };
       if (bodyData.role !== 'Admin') {
         this.loading = false;
-        this.toastr.error('You cannot delete your own account.','Error Deleting Account!')
+        this.toastr.error(
+          'Cannot update role when your currently login.',
+          'Error Updating Account!'
+        );
         return; // Stop further execution
       }
       this.loading = true;
@@ -246,11 +255,11 @@ export class UserManagementComponent implements OnInit {
             .subscribe(() => {
               console.log('Action added to history successfully');
             });
-            this.getUsers();
+          this.getUsers();
         },
         (error) => {
           this.loading = false;
-          this.toastr.error(error.error.message)
+          this.toastr.error(error.error.message);
         }
       );
     } else {
@@ -275,15 +284,11 @@ export class UserManagementComponent implements OnInit {
             .subscribe(() => {
               console.log('Action added to history successfully');
             });
-          setTimeout(() => {
-            this.successMessage = null;
             this.getUsers();
-          }, 2500);
         },
         (error) => {
           this.loading = false;
           this.toastr.error(error.error.message);
-
         }
       );
     }

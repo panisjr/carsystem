@@ -138,3 +138,18 @@
     color: white;
     border: none;
   }
+  
+.updateBtn {
+  width: 127px;
+  font-size: large;
+  height: 40px;
+  color: white;
+  background: #249931;
+  border: none;
+}
+.updateBtn:hover {
+  transition: 0.3s;
+  background: #79d551;
+  color: white;
+  border: none;
+}

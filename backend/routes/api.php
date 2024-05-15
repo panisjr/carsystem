@@ -34,6 +34,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::get('cars/{car}', [CarlistController::class, 'show']);
     Route::put('cars/{car}', [CarlistController::class, 'update']);
     Route::delete('cars/{car}', [CarlistController::class, 'destroy']);
+    Route::get('users/todayRegisteredCarsCount', [CarlistController::class, 'todayRegisteredCarsCount']);
 
     //Accounts 
     Route::get('/getUsers', [UserController::class, 'getUsers']);

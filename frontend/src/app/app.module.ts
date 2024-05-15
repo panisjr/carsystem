@@ -19,6 +19,7 @@ import { ReportsComponent } from './screens/reports/reports.component';
 import { MaintenanceSchedulingComponent } from './screens/maintenance-scheduling/maintenance-scheduling.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,12 +34,13 @@ import { ToastrModule } from 'ngx-toastr';
     MaintenanceSchedulingComponent,
   ],
   imports: [
-    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     FormsModule,
     HttpClientModule,
     DataTablesModule,
+    ToastrModule.forRoot(), 
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('jwt_token'),

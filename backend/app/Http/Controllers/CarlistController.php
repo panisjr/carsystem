@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Carbon\Carbon;
 
 class CarlistController extends Controller
 {
@@ -11,7 +12,11 @@ class CarlistController extends Controller
     {
         return Car::all();
     }
-
+public function todayRegisteredCarsCount(){
+    $today = Carbon::now()->toDateString();
+    $count = Car::whereDate('created_at',$today)->count();
+    return response()->json(['count'=>$count]);
+}
     public function store(Request $request)
     {
         $request->validate([
@@ -29,7 +34,7 @@ class CarlistController extends Controller
 
         $car = Car::create($request->all());
 
-        return response()->json($car, 201);
+        return response()->json(['car'=>$car, 'message'=>'Car added successfully' ],200);
     }
 
     public function show(Car $car)
@@ -54,13 +59,15 @@ class CarlistController extends Controller
 
         $car->update($request->all());
 
-        return response()->json($car, 200);
+        return response()->json(['car'=>$car, 'message'=>'Car updated successfully' ],200);
+
     }
 
     public function destroy(Car $car)
     {
         $car->delete();
 
-        return response()->json(null, 204);
+        return response()->json(['car'=>$car, 'message'=>'Car deleted successfully' ],200);
+
     }
 }

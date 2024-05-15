@@ -101,7 +101,7 @@
           datatable
           [dtOptions]="dtoptions"
           [dtTrigger]="dtTrigger"
-          class="table table-bordered"
+          class="table table-bordered table-striped"
         >
           <thead>
             <tr>
@@ -258,7 +258,6 @@
                 <input
                   class="signUpInput"
                   [(ngModel)]="profileFile"
-                
                   type="file"
                   (change)="onFileSelected($event)"
                 />

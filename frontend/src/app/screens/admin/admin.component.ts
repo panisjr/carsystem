@@ -17,12 +17,16 @@ export class AdminComponent implements OnInit{
   successMessage: string | null = null;
   // Today's Registered Accounts
   todayRegisteredUsersCount: number = 0;
+  todayRegisteredCarsCount: number = 0;
   constructor(private router:Router, private token:TokenService, private serverService: ServerService){}
   ngOnInit(): void {
    const data = this.token.get();
    this.userData = data.user;
    this.serverService.getTodayRegisteredUsersCount().subscribe((response) => {
     this.todayRegisteredUsersCount = response.count;
+  });
+   this.serverService.getTodayRegisteredCarsCount().subscribe((response) => {
+    this.todayRegisteredCarsCount = response.count;
   });
   }
   logout(){
