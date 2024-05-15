@@ -8,23 +8,26 @@ import { CookieService } from 'ngx-cookie-service';
 export class TokenService {
   constructor(private cookieService: CookieService, private router: Router) {}
 
-  handle(token: any) {
-    return this.set(token);
+  handle(token: any,user:any) {
+    return this.set(token, user);
   }
 
-  set(token: any) {
+  set(token: any, user: any) {
     // Set token and user data in cookies
     this.cookieService.set('access_token', JSON.stringify(token));
+    this.cookieService.set('user', JSON.stringify(user));
   }
 
   get() {
     // Retrieve token and user data from cookies
     const token = this.cookieService.get('access_token');
-    return { token };
+    const user = JSON.parse(this.cookieService.get('user'));
+    return { token,user };
   }
 
   remove() {
     // Remove token and user data from cookies
     this.cookieService.delete('access_token');
+    this.cookieService.delete('user');
   }
 }

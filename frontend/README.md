@@ -35,3 +35,4 @@ npm i --save-dev @types/jquery
 npm install datatables.net-dt
 ng add angular-datatables
 
+npm install ng2-file-upload --save

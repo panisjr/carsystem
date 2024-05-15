@@ -29,8 +29,8 @@ export class ServerService {
 
   // Customer
 
-  signUp(data: any) {
-    return this.http.post(`${this.apiUrl}/signUp`, data);
+  signUp(formData: FormData) {
+    return this.http.post<any>(`${this.apiUrl}/signUp`, formData);  
   }
   get() {
     return this.http.get(`${this.apiUrl}/getUsers`);

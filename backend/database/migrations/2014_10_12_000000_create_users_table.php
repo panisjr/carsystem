@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('contact');
             $table->string('role');
             $table->string('status');
+            $table->string('profileFile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
