@@ -6,78 +6,48 @@
         <h3 class="signUp text-center">AutoGaurdian</h3>
       </div>
       <nav class="selection mt-3">
-        <div
-          class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          routerLinkActive="active"
-          routerLink="/adminDashboard"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" routerLinkActive="active"
+          routerLink="/adminDashboard" [routerLinkActiveOptions]="{ exact: true }">
           <h3 class="bi bi-house"></h3>
           <p class="ms-4 p-2">Dashboard</p>
         </div>
-        <div
-          class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          routerLinkActive="active"
-          routerLink="/carlist"
-        >
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" routerLinkActive="active"
+          routerLink="/carlist">
           <h3 class="bi bi-car-front"></h3>
           <p class="ms-4 p-2">Vehicle Management</p>
         </div>
-        <div
-          class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/userManagement']"
-          routerLinkActive="active"
-        >
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/userManagement']"
+          routerLinkActive="active">
           <h3 class="bi bi-person-gear"></h3>
 
           <p class="ms-4 p-2">User Management</p>
         </div>
-        <div
-          class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/salesRental']"
-          routerLinkActive="active"
-        >
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/salesRental']"
+          routerLinkActive="active">
           <h3 class="bi bi-bar-chart"></h3>
           <p class="ms-4 p-2">Sales/Rental Management</p>
         </div>
-        <div
-          class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/maintenance']"
-          routerLinkActive="active"
-        >
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/maintenance']"
+          routerLinkActive="active">
           <h3 class="bi bi-calendar-week"></h3>
           <p class="ms-4 p-2">Maintenance Scheduling</p>
         </div>
-        <div
-          class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/reports']"
-          routerLinkActive="active"
-        >
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/reports']"
+          routerLinkActive="active">
           <h3 class="bi bi-receipt"></h3>
           <p class="ms-4 p-2">Reports</p>
         </div>
-        <div
-          class="logoutBtn d-flex align-items-center justify-content-center"
-          (click)="logout()"
-        >
+        <div class="logoutBtn d-flex align-items-center justify-content-center" (click)="logout()">
           <h3 class="bi bi-box-arrow-left"></h3>
           <p class="ms-4 p-2">Logout</p>
         </div>
       </nav>
     </div>
-    <div
-      class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
-    >
+    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent">
       <div class="col-12 d-flex justify-content-between border-bottom">
-        <div
-          class="text-center ms-5 d-flex align-items-center justify-content-center"
-        >
+        <div class="text-center ms-5 d-flex align-items-center justify-content-center">
           <h2 class="me-5">Vehicle Management</h2>
-          <div
-            class="addCarBtn"
-            data-bs-target="#addCar"
-            data-bs-toggle="modal"
-          >
+          <div class="addCarBtn" data-bs-target="#addCar" data-bs-toggle="modal">
             <p class="mt-2">New car</p>
             <h2 class="bi bi-plus-lg"></h2>
           </div>
@@ -93,12 +63,7 @@
           {{ errorMessage }}
         </div>
         <div *ngIf="cars.length === 0">No cars available.</div>
-        <table
-          datatable
-          [dtOptions]="dtoptions"
-          [dtTrigger]="dtTrigger"
-          class="table table-bordered"
-        >
+        <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table table-bordered">
           <thead>
             <tr>
               <th>Make</th>
@@ -150,15 +115,8 @@
         </table>
       </div>
       <!-- Add Car Modal -->
-      <div
-        class="modal fade"
-        id="addCar"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="addCar"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="addCar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addCar" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content p-3">
             <div class="modal-header">
@@ -168,117 +126,48 @@
               <form (ngSubmit)="editing ? updateCar(carData.id): addCar()">
                 <div class="form-group">
                   <label for="make">Make:</label>
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="make"
-                    name="make"
-                    [(ngModel)]="carData.make"
-                    required
-                  />
+                  <input type="text" class="signUpInput" id="make" name="make" [(ngModel)]="carData.make" required />
                 </div>
                 <div class="form-group">
                   <label for="model">Model:</label>
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="model"
-                    name="model"
-                    [(ngModel)]="carData.model"
-                    required
-                  />
+                  <input type="text" class="signUpInput" id="model" name="model" [(ngModel)]="carData.model" required />
                 </div>
                 <div class="form-group">
                   <label for="year">Year:</label>
-                  <input
-                    type="number"
-                    class="signUpInput"
-                    id="year"
-                    name="year"
-                    [(ngModel)]="carData.year"
-                    required
-                  />
+                  <input type="number" class="signUpInput" id="year" name="year" [(ngModel)]="carData.year" required />
                 </div>
                 <div class="form-group">
                   <label for="VIN">VIN:</label>
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="VIN"
-                    name="VIN"
-                    [(ngModel)]="carData.VIN"
-                    required
-                  />
+                  <input type="text" class="signUpInput" id="VIN" name="VIN" [(ngModel)]="carData.VIN" required />
                 </div>
                 <div class="form-group">
-                  <label for="license_plate_number"
-                    >License Plate Number:</label
-                  >
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="license_plate_number"
-                    name="license_plate_number"
-                    [(ngModel)]="carData.license_plate_number"
-                    required
-                  />
+                  <label for="license_plate_number">License Plate Number:</label>
+                  <input type="text" class="signUpInput" id="license_plate_number" name="license_plate_number"
+                    [(ngModel)]="carData.license_plate_number" required />
                 </div>
                 <div class="form-group">
                   <label for="price">Price:</label>
-                  <input
-                    type="number"
-                    class="signUpInput"
-                    id="price"
-                    name="price"
-                    [(ngModel)]="carData.price"
-                    required
-                  />
+                  <input type="number" class="signUpInput" id="price" name="price" [(ngModel)]="carData.price"
+                    required />
                 </div>
                 <div class="form-group">
                   <label for="color">Color:</label>
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="color"
-                    name="color"
-                    [(ngModel)]="carData.color"
-                    required
-                  />
+                  <input type="text" class="signUpInput" id="color" name="color" [(ngModel)]="carData.color" required />
                 </div>
                 <div class="form-group">
                   <label for="fuel_type">Fuel Type:</label>
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="fuel_type"
-                    name="fuel_type"
-                    [(ngModel)]="carData.fuel_type"
-                    required
-                  />
+                  <input type="text" class="signUpInput" id="fuel_type" name="fuel_type" [(ngModel)]="carData.fuel_type"
+                    required />
                 </div>
                 <div class="form-group">
-                  <label for="transmission_type"
-                    >Transmission Type:</label
-                  >
-                  <input
-                    type="text"
-                    class="signUpInput"
-                    id="transmission_type"
-                    name="transmission_type"
-                    [(ngModel)]="carData.transmission_type"
-                    required
-                  />
+                  <label for="transmission_type">Transmission Type:</label>
+                  <input type="text" class="signUpInput" id="transmission_type" name="transmission_type"
+                    [(ngModel)]="carData.transmission_type" required />
                 </div>
                 <div class="form-group">
                   <label for="quantity">Quantity:</label>
-                  <input
-                    type="number"
-                    class="signUpInput"
-                    id="quantity"
-                    name="quantity"
-                    [(ngModel)]="carData.quantity"
-                    required
-                  />
+                  <input type="number" class="signUpInput" id="quantity" name="quantity" [(ngModel)]="carData.quantity"
+                    required />
                 </div>
                 <div class="modal-footer">
                   <button
