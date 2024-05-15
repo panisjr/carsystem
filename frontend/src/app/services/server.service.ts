@@ -87,7 +87,6 @@ export class ServerService {
       accountLast: accountLast,
       accountRole: accountRole,
     };
-    console.log(payload);
     return this.http.post<any>(`${this.apiUrl}/history`, payload);
   }
   getHistory(): Observable<any[]> {

@@ -37,6 +37,29 @@ export class SignInComponent {
     this.loading = true;
     this.serverService.signIn(userData).subscribe(
       (response: any) => {
+        if (response.code === 404) {
+          this.toastr.error('Email not found!', 'Error signing in!');
+        } else if (response.code === 403) {
+          this.toastr.error(
+            'No Active user found with this account! Your account is Deactivated.',
+            'Error signing in!'
+          );
+        } else if (response.code === 402) {
+          this.toastr.error(
+            'Email or Password is incorrect!',
+            'Error signing in!'
+          );
+        } else if (response.code === 401) {
+          this.toastr.error(
+            'Unauthorized!',
+            'Error signing in!'
+          );
+        }else if (response.code === 500) {
+          this.toastr.error(
+            'Could not create token.',
+            'Error signing in!'
+          );
+        }else{
         this.token.handle(response.access_token, response.user);
         const role = response.user.role;
         this.loading = false;
@@ -51,6 +74,7 @@ export class SignInComponent {
             this.router.navigate(['/']);
             break;
         }
+      }
       },
       (error) => {
         this.loading = false;

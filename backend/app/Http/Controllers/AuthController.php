@@ -35,23 +35,20 @@ class AuthController extends Controller
         // Fetch all users with the provided email
         $users = User::where('email', $credentials['email'])->get();
 
+        // Check if there's an Active user
+        $activeUser = $users->firstWhere('status', 'Active');
         // Check if any user with the email exists
         if ($users->isEmpty()) {
             return response()->json([
                 'status' => false,
                 'code' => 404,
-                'message' => 'Email not found!'
             ]);
         }
-        // Check if there's an Active user
-        $activeUser = $users->firstWhere('status', 'Active');
-
         if (!$activeUser) {
             // If no Active user found
             return response()->json([
                 'status' => false,
                 'code' => 403,
-                'message' => 'No Active user found with this account!'
             ]);
         }
         // Attempt login with the credentials
@@ -59,8 +56,7 @@ class AuthController extends Controller
             if (!JWTAuth::attempt($credentials)) {
                 return response()->json([
                     'status' => false,
-                    'code' => 401,
-                    'message' => 'Email or Password is incorrect!'
+                    'code' => 402,
                 ]);
             }
         } catch (JWTException $e) {
@@ -87,12 +83,12 @@ class AuthController extends Controller
             'firstname' => 'required|regex:/^[a-zA-Z\s\-\.]+$/|not_regex:/[^\x00-\x7F]+/|max:255',
             'middlename' => 'nullable|regex:/^[A-Z]\.$/|not_regex:/[^\x00-\x7F]+/|max:2',
             'lastname' => 'required|regex:/^[a-zA-Z\s\-\.]+$/|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'contact' => ['string', 'regex:/^09\d{9}$/', 'max:11'], // Regular expression for Philippine number starting with 09
+            'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+            'contact' => 'required|string|max:11|regex:/^09\d{9}$/', // Regular expression for Philippine number starting with 09
             'password' => 'required|string|min:8|max:20|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]*$/|not_regex:/[^\x00-\x7F]+/',
             'confirm_password' => 'required|string|same:password',
             'role' => ['required', Rule::in(['Admin', 'Customer'])],
-            'profileFile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as per your requirements
+            'profileFile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as per your requirements
         ]);
         if ($existingActiveUser) {
             // If an Active user with the provided email exists, return an error response
@@ -105,16 +101,25 @@ class AuthController extends Controller
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Validation failed Make sure to fill the fields properly.',
+                    'message' => 'Validation failed Make sure to fill the .',
                     'errors' => $validator->errors(),
                 ], 422);
             }
             // Store the file
-            $uploadedFile = $request->file('profileFile'); // Ensure this matches the key used in formData.append in Angular
-            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-            $filePath = $uploadedFile->storeAs('uploads', $fileName);
+            $uploadedFile = $request->file('profileFile');
+
+            // Check if a file was uploaded
+            if ($uploadedFile !== null) {
+                // Process the file if it exists
+                $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+                $filePath = $uploadedFile->storeAs('uploads', $fileName);
+            } else {
+                // If no file was uploaded, set the file path to null or an empty string
+                $filePath = null; // Or you can set it to an empty string depending on your requirements
+            }
+
             // Only include fields that should be stored in the database
-            $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profileFile']);
+            $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
             // Add the file path to the user data
             $userData['profileFile'] = $filePath;
             // Create new user
@@ -129,16 +134,24 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Validation failed Make sure to fill the fields properly.',
+                'message' => 'Validation failed Make sure to fill the fields.',
                 'errors' => $validator->errors(),
             ], 422);
         }
-        // Store the file
-        $uploadedFile = $request->file('profileFile'); // Ensure this matches the key used in formData.append in Angular
-        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-        $filePath = $uploadedFile->storeAs('uploads', $fileName);
+        $uploadedFile = $request->file('profileFile');
+
+        // Check if a file was uploaded
+        if ($uploadedFile !== null) {
+            // Process the file if it exists
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $filePath = $uploadedFile->storeAs('uploads', $fileName);
+        } else {
+            // If no file was uploaded, set the file path to null or an empty string
+            $filePath = null; // Or you can set it to an empty string depending on your requirements
+        }
+
         // Only include fields that should be stored in the database
-        $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profileFile']);
+        $userData = $request->only(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
         // Add the file path to the user data
         $userData['profileFile'] = $filePath;
         // Create new user

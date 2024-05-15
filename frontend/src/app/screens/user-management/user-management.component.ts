@@ -88,7 +88,7 @@ export class UserManagementComponent implements OnInit {
         this.resetForm();
       },
       (error) => {
-        this.toastr.error(error.error.message);
+        this.toastr.error(error.error.message,'sdfasd');
       }
     );
   }
@@ -129,7 +129,7 @@ export class UserManagementComponent implements OnInit {
         this.getUsers();
       },
       (error) => {
-        this.toastr.error(error.error.error);
+        this.toastr.error(error.error.message);
       }
     );
   }
@@ -214,21 +214,20 @@ export class UserManagementComponent implements OnInit {
       role: this.role,
       profileFile: this.profileFile,
     };
-    const currentUserID = Number(sessionStorage.getItem('user_id'));
-    if (currentUserID === this.userData.id) {
-      let bodyData = {
-        firstname: this.firstname,
-        middlename: this.middlename,
-        lastname: this.lastname,
-        email: this.email,
-        contact: this.contact,
-        role: this.role,
-        profileFile: this.profileFile,
-      };
+    if (accountId === this.userData.id) {
+      console.log(this.userData.email);
       if (bodyData.role !== 'Admin') {
         this.loading = false;
         this.toastr.error(
-          'Cannot update role when your currently login.',
+          'Cannot change role when your currently login.',
+          'Error Updating Account!'
+        );
+        return; // Stop further execution
+      } else if (bodyData.email !== this.userData.email) {
+        console.log('asdfasdf')
+        this.loading = false;
+        this.toastr.error(
+          'Cannot change email when your currently login.',
           'Error Updating Account!'
         );
         return; // Stop further execution
@@ -262,7 +261,7 @@ export class UserManagementComponent implements OnInit {
           this.toastr.error(error.error.message);
         }
       );
-    } else {
+    }else {
       this.serverService.updateUser(accountId, bodyData).subscribe(
         (resultData: any) => {
           this.loading = false;
@@ -284,7 +283,7 @@ export class UserManagementComponent implements OnInit {
             .subscribe(() => {
               console.log('Action added to history successfully');
             });
-            this.getUsers();
+          this.getUsers();
         },
         (error) => {
           this.loading = false;
