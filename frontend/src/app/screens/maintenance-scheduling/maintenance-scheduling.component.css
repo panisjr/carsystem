@@ -1,0 +1,50 @@
+/* Navbar */
+.navBar {
+    background-color: #161721;
+    color: white;
+  }
+  .logo {
+    width: 80px;
+  }
+  .selection {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: start;
+    padding: 20px;
+    flex-direction: column;
+  }
+  .signUp {
+    /* font-family: "Jaro", sans-serif; */
+    font-family: "Rowdies", sans-serif;
+  }
+  .logoutBtn {
+    margin-top: 100px;
+  }
+  .navBtn,
+  .logoutBtn {
+    color: white;
+    padding: 5px 15px 0 15px;
+  }
+  .navBtn:hover,
+  .logoutBtn:hover {
+    background-color: white;
+    border-radius: 5px;
+    color: #161721;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .navBtn.active,
+  .logoutBtn.active {
+    background-color: white;
+    border-radius: 5px;
+    color: #161721;
+  }
+  .profile {
+    width: 40px;
+    border-radius: 50%;
+  }
+  .border-bottom {
+    border-bottom: 2px solid rgb(0, 0, 0);
+  }
+  /* Navbar End */
+

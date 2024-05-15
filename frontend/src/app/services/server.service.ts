@@ -14,14 +14,16 @@ export class ServerService {
     return this.http.post(`${this.apiUrl}/cars`, data);
   }
 
-  // Customer
+  // Sign and Sign up
 
   signUp(data: any) {
     return this.http.post(`${this.apiUrl}/signUp`, data);
   }
-  get() {
-    return this.http.get(`${this.apiUrl}/getUsers`);
+  signIn(data: any) {
+    return this.http.post(`${this.apiUrl}/signIn`, data);
   }
+  // End Sign In and Sign Up
+
   getTotalAccounts(): Observable<any> {
     return this.http.get<{ totalAccounts: number; totalBooks: number }>(
       `${this.apiUrl}/getTotalAccounts`
@@ -37,10 +39,10 @@ export class ServerService {
       `${this.apiUrl}/users/todayRegisteredBooksCount`
     );
   }
-  signIn(data: any) {
-    return this.http.post(`${this.apiUrl}/signIn`, data);
+  // CRUD User Management
+  getUsers() {
+    return this.http.get(`${this.apiUrl}/getUsers`);
   }
-
   updateUser(userId: number, data: any) {
     return this.http.put(`${this.apiUrl}/updateUser/${userId}`, data);
   }
@@ -50,6 +52,8 @@ export class ServerService {
   deactivate(userId: number, data: any) {
     return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);
   }
+  // End CRUD User Management 
+
   // History
   history(
     actionType: string,
@@ -81,5 +85,11 @@ export class ServerService {
   }
   getCars() {
     return this.http.get(`${this.apiUrl}/cars`);
+  }
+
+  // Sales and Revue Reports
+  getReportData(): Observable<any> {
+    // Replace with your actual API endpoint
+    return this.http.get(`${this.apiUrl}/sales`);
   }
 }

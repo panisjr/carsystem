@@ -103,4 +103,23 @@
     width: 30%;
   }
 
+  .addCarBtn {
+    display: flex;
+    background-color: gray;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    width: 120px;
+    font-size: large;
+    height: 40px;
+    color: white;
+    background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
+    border: none;
+  }
+  .addCarBtn:hover {
+    transition: 0.3s;
+    background: linear-gradient(99.78deg, #93d1f8 -5.85%, #654ff7 109.55%);
+    color: white;
+    border: none;
+  }
   

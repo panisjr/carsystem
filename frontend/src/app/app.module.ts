@@ -8,12 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './screens/admin/admin.component';
 import { CustomerComponent } from './screens/customer/customer.component';
-import { HomeComponent } from './screens/home/home.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ServerService } from './services/server.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CarlistComponent } from './screens/carlist/carlist.component';
 import { DataTablesModule } from "angular-datatables";
+import { SalesRentalComponent } from './screens/sales-rental/sales-rental.component';
+import { UserManagementComponent } from './screens/user-management/user-management.component';
+import { ReportsComponent } from './screens/reports/reports.component';
+import { MaintenanceSchedulingComponent } from './screens/maintenance-scheduling/maintenance-scheduling.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,11 @@ import { DataTablesModule } from "angular-datatables";
     SignInComponent,
     AdminComponent,
     CustomerComponent,
-    HomeComponent,
     CarlistComponent,
+    SalesRentalComponent,
+    UserManagementComponent,
+    ReportsComponent,
+    MaintenanceSchedulingComponent,
   ],
   imports: [
     BrowserModule,
