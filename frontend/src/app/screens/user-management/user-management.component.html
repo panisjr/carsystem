@@ -1,132 +1,355 @@
 <div class="container-fluid">
-    <div class="row vh-100">
-      <div class="col-sm-6 col-md-5 col-lg-2 navBar">
-        <div class="logoContainer input-group align-items-center justify-content-center">
-          <img class="logo" src="/assets/logo.png" />
-          <h3 class="signUp text-center">AutoGaurdian</h3>
-        </div>
-  
-        <nav class="selection mt-3">
-          <div
-            class="navBtn mb-3 d-flex align-items-center justify-content-center"
-            routerLinkActive="active"
-            routerLink="/adminDashboard"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-          <h3 class="bi bi-house"></h3>
-            <p class="ms-4 p-2">Dashboard</p>
-          </div>
-          <div
-            class="navBtn mb-3 d-flex align-items-center justify-content-center"
-            routerLinkActive="active"
-            routerLink="/carlist"
-          >
-            <h3 class="bi bi-car-front"></h3>
-            <p class="ms-4 p-2">Vehicle Management</p>
-          </div>
-          <div
-            class="navBtn mb-3 d-flex align-items-center justify-content-center"
-            [routerLink]="['/userManagement']" routerLinkActive="active" 
-          >
-            <h3 class="bi bi-person-gear"></h3>
-
-            <p class="ms-4 p-2">User Management</p>
-          </div>
-          <div
-            class="navBtn mb-3 d-flex align-items-center justify-content-center"
-            [routerLink]="['/salesRental']" routerLinkActive="active" 
-          >
-            <h3 class="bi bi-bar-chart"></h3>
-            <p class="ms-4 p-2">Sales/Rental Management</p>
-          </div>
-          <div
-            class="navBtn mb-3 d-flex align-items-center justify-content-center"
-            [routerLink]="['/maintenance']"
-            routerLinkActive="active"
-          >
-            <h3 class="bi bi-calendar-week"></h3>
-            <p class="ms-4 p-2">Maintenance Scheduling</p>
-          </div>
-          <div
-            class="navBtn mb-3 d-flex align-items-center justify-content-center"
-            [routerLink]="['/reports']"
-            routerLinkActive="active"
-          >
-            <h3 class="bi bi-receipt"></h3>
-            <p class="ms-4 p-2">Reports</p>
-          </div>
-          <div
-            class="logoutBtn d-flex align-items-center justify-content-center"
-            (click)="logout()"
-          >
-            <h3 class="bi bi-box-arrow-left"></h3>
-            <p class="ms-4 p-2">Logout</p>
-          </div>
-        </nav>
+  <div class="row vh-100">
+    <div class="col-sm-6 col-md-5 col-lg-2 navBar">
+      <div
+        class="logoContainer input-group align-items-center justify-content-center"
+      >
+        <img class="logo" src="/assets/logo.png" />
+        <h3 class="signUp text-center">AutoGaurdian</h3>
       </div>
-      <div class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent">
-        <div class="col-12 d-flex justify-content-between border-bottom">
-          <div class="text-center ms-5 d-flex align-items-center justify-content-center">
-            <h2 class="me-5">User Management</h2>
-            <div class="addCarBtn" data-bs-target="#addCar" data-bs-toggle="modal">
-              <p class="mt-2">New user</p>
-              <h2 class="bi bi-plus-lg"></h2>
+
+      <nav class="selection mt-3">
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          routerLinkActive="active"
+          routerLink="/adminDashboard"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <h3 class="bi bi-house"></h3>
+          <p class="ms-4 p-2">Dashboard</p>
+
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          routerLinkActive="active"
+          routerLink="/carlist"
+        >
+          <h3 class="bi bi-car-front"></h3>
+          <p class="ms-4 p-2">Vehicle Management</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/userManagement']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-person-gear"></h3>
+
+          <p class="ms-4 p-2">User Management</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/salesRental']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-bar-chart"></h3>
+          <p class="ms-4 p-2">Sales/Rental Management</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/maintenance']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-calendar-week"></h3>
+          <p class="ms-4 p-2">Maintenance Scheduling</p>
+        </div>
+        <div
+          class="navBtn mb-3 d-flex align-items-center justify-content-center"
+          [routerLink]="['/reports']"
+          routerLinkActive="active"
+        >
+          <h3 class="bi bi-receipt"></h3>
+          <p class="ms-4 p-2">Reports</p>
+        </div>
+        <div
+          class="logoutBtn d-flex align-items-center justify-content-center"
+          (click)="logout()"
+        >
+          <h3 class="bi bi-box-arrow-left"></h3>
+          <p class="ms-4 p-2">Logout</p>
+        </div>
+      </nav>
+    </div>
+    <div
+      class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
+    >
+      <div class="col-12 d-flex justify-content-between border-bottom">
+        <div
+          class="text-center ms-5 d-flex align-items-center justify-content-center"
+        >
+          <h2 class="me-5">User Management</h2>
+          <div
+            class="addCarBtn"
+            data-bs-target="#addAccount"
+            data-bs-toggle="modal"
+          >
+          
+            <p class="mt-2">New user</p>
+            <h2 class="bi bi-plus-lg"></h2>
+          </div>
+        </div>
+        <div class="p-2 me-5 d-flex align-items-center justify-content-center">
+          <p class="me-3 pt-3">
+            {{ userData.firstname }}{{ " " }}{{ userData.lastname }}
+          </p>
+          <img src="/assets/profilepic.png" alt="profile" class="profile" />
+        </div>
+      </div>
+      <div class="col-12 mt-5">
+        <h2>List of Users</h2>
+        <div *ngIf="users.length === 0">No users available.</div>
+        <table
+          datatable
+          [dtOptions]="dtoptions"
+          [dtTrigger]="dtTrigger"
+          class="table table-bordered"
+        >
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Contact</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>
+                {{ user.firstname }} {{ user.middlename }} {{ user.lastname }}
+              </td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.contact }}</td>
+              <td>{{ user.role }}</td>
+              <td>{{ user.status }}</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-success me-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addAccount"
+                  (click)="setEdit(user.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-danger me-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteAccountModal"
+                  (click)="setDelete(user.id)"
+                >
+                  Delete
+                </button>
+                <button
+                  [ngClass]="{
+                    'deactivateBtn ': user.status === 'Active',
+                    'btn btn-sm btn-success': user.status === 'Deactivated'
+                  }"
+                  (click)="deactivate(user.id, user.status)"
+                >
+                  {{ user.status === "Deactivated" ? "Active" : "Deactivated" }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add Account Modal -->
+    <div
+      class="modal fade"
+      id="addAccount"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="addAccount"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addAccount">Add Account</h1>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="editing ? updateUser(id) : signUp()">
+              <div>
+                <input
+                  type="text"
+                  class="signUpInput"
+                  name="firstname"
+                  [(ngModel)]="firstname"
+                  required
+                  placeholder="First Name"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  class="signUpInput"
+                  name="middlename"
+                  [(ngModel)]="middlename"
+                  placeholder="Middle Initial (Optional)"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  class="signUpInput"
+                  name="lastname"
+                  [(ngModel)]="lastname"
+                  placeholder="Last Name"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  class="signUpInput"
+                  name="email"
+                  [(ngModel)]="email"
+                  placeholder="Email"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  class="signUpInput"
+                  name="contact"
+                  [(ngModel)]="contact"
+                  placeholder="Contact"
+                />
+              </div>
+
+              <!-- Conditionally render password fields -->
+              <ng-container *ngIf="!editing">
+                <div>
+                  <input
+                    type="password"
+                    class="signUpInput"
+                    name="password"
+                    [(ngModel)]="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    class="signUpInput"
+                    name="confirm_password"
+                    [(ngModel)]="confirm_password"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+              </ng-container>
+
+              <div class="form-group">
+                <label for="email">Role:</label>
+                <select
+                  class="signUpInput"
+                  id="role"
+                  [(ngModel)]="role"
+                  name="role"
+                  required
+                >
+                  <option value="Customer" selected>Customer</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </div>
+              <div>
+                <input
+                  class="signUpInput"
+                  [(ngModel)]="profileFile"
+                
+                  type="file"
+                  (change)="onFileSelected($event)"
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  [ngClass]="{
+                    'signupbtn text-center m-3': !editing,
+                    'updateBtn btn-success text-center m-3': editing
+                  }"
+                  type="submit"
+                >
+                  {{ editing ? "Update" : "Add" }} Account
+                </button>
+                <button
+                  type="button"
+                  class="cancelBtn"
+                  data-bs-dismiss="modal"
+                  (click)="resetForm()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteAccountModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="deleteAccountModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteAccountModal">
+              Delete Confirmation
+            </h1>
+          </div>
+          <div class="modal-body p-2">
+            <p class="text-black m-2">
+              Are you sure you want to delete this account?
+            </p>
+            <p><b> Account's Information</b></p>
+            <div class="ms-3 d-flex align-items-center">
+              <p class="me-2"><b>Name:</b></p>
+              <p class="me-2">{{ firstname }}</p>
+              <p class="me-2">{{ middlename }}</p>
+              <p class="me-2">{{ lastname }}</p>
+            </div>
+            <div class="ms-3">
+              <p class="me-2">
+                <b>Email: </b>
+                {{ email }}
+              </p>
+              <p class="me-2">
+                <b>Contact:</b>
+                {{ contact }}
+              </p>
+              <p class="me-2">
+                <b>Role:</b>
+                {{ role }}
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                data-bs-dismiss="modal"
+                (click)="deleteUser(id)"
+                class="btn mt-2 me-3 p-3 btn-danger"
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                class="btn mt-2 p-3 btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
             </div>
           </div>
-          <div class="p-2 me-3">
-            <img src="/assets/profilepic.png" alt="profile" class="profile" />
-          </div>
+          
         </div>
-        <div class="col-12 mt-5">
-          <h2>List of Users</h2>
-          <div *ngIf="errorMessage" class="alert alert-danger">
-            {{ errorMessage }}
-          </div>
-          <div *ngIf="users.length === 0">No cars available.</div>
-  
-          <table
-            datatable
-            [dtOptions]="dtoptions"
-            [dtTrigger]="dtTrigger"
-            class="table table-bordered"
-          >
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>Role</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users">
-                <td>{{ user.firstname }} {{ user.middlename }} {{ user.lastname }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.contact }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.status }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- Error Message -->
-      <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
-        <h4 class="alert-heading">Error!</h4>
-        <hr />
-        <p>
-          {{ errorMessage }}
-        </p>
-      </div>
-      <!-- Success Message -->
-      <div class="alert alert-danger" *ngIf="successMessage" role="alert">
-        <h4 class="alert-heading">Error!</h4>
-        <hr />
-        <p>
-          {{ successMessage }}
-        </p>
       </div>
     </div>
   </div>
-  
+</div>

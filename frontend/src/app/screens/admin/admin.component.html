@@ -20,20 +20,21 @@
           routerLinkActive="active"
           routerLink="/carlist"
         >
-        <h3 class="bi bi-car-front-fill"></h3>
+          <h3 class="bi bi-car-front-fill"></h3>
           <p class="ms-4 p-2">Vehicle Management</p>
         </div>
         <div
           class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/userManagement']" routerLinkActive="active" 
+          [routerLink]="['/userManagement']"
+          routerLinkActive="active"
         >
           <h3 class="bi bi-person-gear"></h3>
           <p class="ms-4 p-2">User Management</p>
         </div>
         <div
           class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/salesRental']" routerLinkActive="active" 
-
+          [routerLink]="['/salesRental']"
+          routerLinkActive="active"
         >
           <h3 class="bi bi-bar-chart"></h3>
           <p class="ms-4 p-2">Sales/Rental Management</p>
@@ -51,7 +52,7 @@
           [routerLink]="['/reports']"
           routerLinkActive="active"
         >
-        <h3 class="bi bi-receipt"></h3>
+          <h3 class="bi bi-receipt"></h3>
           <p class="ms-4 p-2">Reports</p>
         </div>
         <div
@@ -67,10 +68,15 @@
       class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
     >
       <div class="col-12 d-flex justify-content-between border-bottom">
-        <div class="text-center ms-5">
+        <div
+          class="text-center ms-5 d-flex align-items-center justify-content-center"
+        >
           <h2>Dashboard</h2>
         </div>
-        <div class="p-2 me-3">
+        <div class="p-2 me-5 d-flex align-items-center justify-content-center">
+          <p class="me-3 pt-3">
+            {{ userData.firstname }}{{ " " }}{{ userData.lastname }}
+          </p>
           <img src="/assets/profilepic.png" alt="profile" class="profile" />
         </div>
       </div>
@@ -87,7 +93,7 @@
         </div>
         <div class="users p-4">
           <div class="d-flex justify-content-between align-items-center">
-            <h2 class="text-white">+3</h2>
+            <h2 class="text-white">+{{ todayRegisteredUsersCount }}</h2>
             <h1 class="bi bi-people text-white"></h1>
           </div>
           <div class="d-flex">

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'signIn', component: SignInComponent, title: 'Sign In' },
   { path: 'signUp', component: SignUpComponent, title: 'Sign Up on AutoGaurdian' },
   { path: 'adminDashboard', component: AdminComponent, title: 'AutoGaurdian | Admin Dashboard', canActivate:[AuthGuard]},
-  { path: 'costumerDashboard', component: CustomerComponent, title: 'AutoGaurdian | Costumer Dashboard' },
+  { path: 'customerDashboard', component: CustomerComponent, title: 'AutoGaurdian | Costumer Dashboard' },
   { path: 'userManagement', component: UserManagementComponent, title: 'AutoGaurdian | User Management' },
   { path: 'carlist', component: CarlistComponent, title: 'AutoGaurdian | Car Management' },
   { path: 'salesRental', component: SalesRentalComponent, title: 'AutoGaurdian | Sales and Rental Management' },

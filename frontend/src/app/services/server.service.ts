@@ -37,6 +37,19 @@ export class ServerService {
   }
   // End Sign In and Sign Up
 
+  // CRUD User Management
+  getUsers() {
+    return this.http.get(`${this.apiUrl}/getUsers`);
+  }
+  updateUser(userId: number, data: any) {
+    return this.http.put(`${this.apiUrl}/updateUser/${userId}`, data);
+  }
+  deleteUser(userId: number) {
+    return this.http.delete(`${this.apiUrl}/deleteUser/${userId}`);
+  }
+  deactivate(userId: number, data: any) {
+    return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);
+  }
   getTotalAccounts(): Observable<any> {
     return this.http.get<{ totalAccounts: number; totalBooks: number }>(
       `${this.apiUrl}/getTotalAccounts`
@@ -46,24 +59,6 @@ export class ServerService {
     return this.http.get<{ count: number }>(
       `${this.apiUrl}/users/todayRegisteredUsersCount`
     );
-  }
-  getTodayRegisteredBooksCount() {
-    return this.http.get<{ count: number }>(
-      `${this.apiUrl}/users/todayRegisteredBooksCount`
-    );
-  }
-  // CRUD User Management
-  getUsers() {
-    return this.http.get(`${this.apiUrl}/getUsers`);
-  }
-  updateUser(userId: number, data: any) {
-    return this.http.put(`${this.apiUrl}/updateUser/${userId}`, data);
-  }
-  deleteUser(userId: number, data: any) {
-    return this.http.delete(`${this.apiUrl}/deleteUser/${userId}`, data);
-  }
-  deactivate(userId: number, data: any) {
-    return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);
   }
   // End CRUD User Management 
 

@@ -16,6 +16,7 @@ export class SalesRentalComponent implements OnInit {
 
   errorMessage: string | null = null;
   successMessage: string | null = null;
+  userData: any = {};
   constructor(
     private serverService: ServerService,
     private token: TokenService,
@@ -28,6 +29,8 @@ export class SalesRentalComponent implements OnInit {
       pageLength: 10
     };
     this.serverService.getReportData()
+    const data = this.token.get();
+    this.userData = data.user;
   }
   
   logout() {

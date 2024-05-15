@@ -38,7 +38,8 @@
               "src/styles.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css"
+              "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",

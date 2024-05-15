@@ -1,260 +1,192 @@
 <div class="container-fluid">
-    <div class="row vh-100">
-        <div class="col-sm-6 col-md-5 col-lg-2 navBar">
-            <div class="input-group align-items-center justify-content-center">
-                <img class="logo" src="/assets/logo.png" />
-                <h3 class="signUp text-center">AutoGaurdian</h3>
-            </div>
-
-            <nav class="selection mt-3">
-                <div class="navBtn mb-3 d-flex align-items-center justify-content-center" routerLinkActive="active"
-                    routerLink="/adminDashboard" [routerLinkActiveOptions]="{ exact: true }">
-                    <h3 class="bi bi-house"></h3>
-                    <p class="ms-4 p-2">Dashboard</p>
-                </div>
-                <div class="navBtn mb-3 d-flex align-items-center justify-content-center" routerLinkActive="active"
-                    routerLink="/carlist">
-                    <h3 class="bi bi-car-front"></h3>
-                    <p class="ms-4 p-2">Vehicle Management</p>
-                </div>
-                <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                    [routerLink]="['/userManagement']" routerLinkActive="active">
-                    <h3 class="bi bi-person-gear"></h3>
-
-                    <p class="ms-4 p-2">User Management</p>
-                </div>
-                <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                    [routerLink]="['/salesRental']" routerLinkActive="active">
-                    <h3 class="bi bi-bar-chart"></h3>
-                    <p class="ms-4 p-2">Sales/Rental Management</p>
-                </div>
-                <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                    [routerLink]="['/maintenance']" routerLinkActive="active">
-                    <h3 class="bi bi-calendar-week"></h3>
-                    <p class="ms-4 p-2">Maintenance Scheduling</p>
-                </div>
-                <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/reports']"
-                    routerLinkActive="active">
-                    <h3 class="bi bi-receipt"></h3>
-                    <p class="ms-4 p-2">Reports</p>
-                </div>
-                <div class="logoutBtn d-flex align-items-center justify-content-center" (click)="logout()">
-                    <h3 class="bi bi-box-arrow-left"></h3>
-                    <p class="ms-4 p-2">Logout</p>
-                </div>
-            </nav>
+  <div class="row vh-100">
+    <div class="col-sm-6 col-md-5 col-lg-2 navBar">
+      <div class="input-group align-items-center justify-content-center">
+        <img class="logo" src="/assets/logo.png" />
+        <h3 class="signUp text-center">AutoGaurdian</h3>
+      </div>
+      <nav class="selection mt-3">
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" routerLinkActive="active"
+          routerLink="/adminDashboard" [routerLinkActiveOptions]="{ exact: true }">
+          <h3 class="bi bi-house"></h3>
+          <p class="ms-4 p-2">Dashboard</p>
         </div>
-        <div class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent">
-            <div class="col-12 d-flex justify-content-between border-bottom">
-                <div class="text-center ms-5 d-flex align-items-center justify-content-center">
-                    <h2 class="me-5">Vehicle Management</h2>
-                    <div class="addCarBtn" data-bs-target="#addCar" data-bs-toggle="modal">
-                        <p class="mt-2">New car</p>
-                        <h2 class="bi bi-plus-lg"></h2>
-                    </div>
-                </div>
-                <div class="p-2 me-3">
-                    <img src="/assets/profilepic.png" alt="profile" class="profile" />
-                </div>
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" routerLinkActive="active"
+          routerLink="/carlist">
+          <h3 class="bi bi-car-front"></h3>
+          <p class="ms-4 p-2">Vehicle Management</p>
+        </div>
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/userManagement']"
+          routerLinkActive="active">
+          <h3 class="bi bi-person-gear"></h3>
+
+          <p class="ms-4 p-2">User Management</p>
+        </div>
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/salesRental']"
+          routerLinkActive="active">
+          <h3 class="bi bi-bar-chart"></h3>
+          <p class="ms-4 p-2">Sales/Rental Management</p>
+        </div>
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/maintenance']"
+          routerLinkActive="active">
+          <h3 class="bi bi-calendar-week"></h3>
+          <p class="ms-4 p-2">Maintenance Scheduling</p>
+        </div>
+        <div class="navBtn mb-3 d-flex align-items-center justify-content-center" [routerLink]="['/reports']"
+          routerLinkActive="active">
+          <h3 class="bi bi-receipt"></h3>
+          <p class="ms-4 p-2">Reports</p>
+        </div>
+        <div class="logoutBtn d-flex align-items-center justify-content-center" (click)="logout()">
+          <h3 class="bi bi-box-arrow-left"></h3>
+          <p class="ms-4 p-2">Logout</p>
+        </div>
+      </nav>
+    </div>
+    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent">
+      <div class="col-12 d-flex justify-content-between border-bottom">
+        <div class="text-center ms-5 d-flex align-items-center justify-content-center">
+          <h2 class="me-5">Vehicle Management</h2>
+          <div class="addCarBtn" data-bs-target="#addCar" data-bs-toggle="modal">
+            <p class="mt-2">New car</p>
+            <h2 class="bi bi-plus-lg"></h2>
+          </div>
+        </div>
+        <div class="p-2  me-5 d-flex align-items-center justify-content-center">
+          <p class="me-3 pt-3">{{userData.firstname}}{{" "}}{{userData.lastname}}</p>
+          <img src="/assets/profilepic.png" alt="profile" class="profile" />
+        </div>
+      </div>
+      <div class="col-12 mt-5">
+        <h2>List of Cars</h2>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="cars.length === 0">No cars available.</div>
+        <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>VIN</th>
+              <th>License Plate Number</th>
+              <th>Price</th>
+              <th>Color</th>
+              <th>Fuel Type</th>
+              <th>Transmission Type</th>
+              <th>Quantity</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let car of cars">
+              <td>{{ car.make }}</td>
+              <td>{{ car.model }}</td>
+              <td>{{ car.year }}</td>
+              <td>{{ car.VIN }}</td>
+              <td>{{ car.license_plate_number }}</td>
+              <td>{{ car.price }}</td>
+              <td>{{ car.color }}</td>
+              <td>{{ car.fuel_type }}</td>
+              <td>{{ car.transmission_type }}</td>
+              <td>{{ car.quantity }}</td>
+              <td>
+                <button class="btn btn-sm btn-primary" (click)="openEditModal(car)">
+                  Update
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteCar(car)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Add Car Modal -->
+      <div class="modal fade" id="addCar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addCar" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content p-3">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addCar">Add Account</h1>
             </div>
-
-            <!-- Add Car Modal -->
-            <div class="modal fade" id="addCar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="addCar" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content p-3">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="addCar">Add Account</h1>
-                        </div>
-
-                        <nav class="selection mt-3">
-                            <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                                routerLinkActive="active" routerLink="/adminDashboard">
-                                <h3 class="bi bi-house"></h3>
-                                <p class="ms-4 p-2">Dashboard</p>
-                            </div>
-                            <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                                routerLinkActive="active" routerLink="/carlist">
-                                <h3 class="bi bi-car-front-fill"></h3>
-                                <p class="ms-4 p-2">Vehicle Management</p>
-                            </div>
-                            <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                                routerLink="/costumerManagement">
-                                <h3 class="bi bi-person-gear"></h3>
-                                <p class="ms-4 p-2">User Management</p>
-                            </div>
-                            <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                                [routerLink]="['/transaction']" routerLinkActive="active">
-                                <h3 class="bi bi-bar-chart"></h3>
-                                <p class="ms-4 p-2">Sales/Rental Management</p>
-                            </div>
-                            <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                                [routerLink]="['/history']" routerLinkActive="active">
-                                <h3 class="bi bi-receipt"></h3>
-                                <p class="ms-4 p-2">Maintenance Scheduling</p>
-                            </div>
-                            <div class="navBtn mb-3 d-flex align-items-center justify-content-center"
-                                [routerLink]="['/history']" routerLinkActive="active">
-                                <h3 class="bi bi-clock-history"></h3>
-                                <p class="ms-4 p-2">Reporting</p>
-                            </div>
-                            <div class="logoutBtn d-flex align-items-center justify-content-center" (click)="logout()">
-                                <h3 class="bi bi-box-arrow-left"></h3>
-                                <p class="ms-4 p-2">Logout</p>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent">
-                        <div class="col-12 d-flex justify-content-between border-bottom">
-                            <div class="p-3 text-center ms-5 d-flex">
-                                <h2 class="me-4">Vehicle Management</h2>
-                                <div class="addCarBtn" data-bs-target="#addCar" data-bs-toggle="modal">
-                                    <p class="mt-2">New car</p>
-                                    <h2 class="bi bi-plus-lg"></h2>
-                                </div>
-                            </div>
-                            <div class="p-2 me-3">
-                                <img src="/assets/profilepic.png" alt="profile" class="profile" />
-                            </div>
-                        </div>
-
-                        <!-- Add Car Modal -->
-                        <div class="modal fade" id="addCar" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="addCar" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content p-3">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="addCar">Add Account</h1>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form (ngSubmit)="addCar()">
-                                            <div class="form-group">
-                                                <label for="make">Make:</label>
-                                                <input type="text" class="signUpInput" id="make" name="make"
-                                                    [(ngModel)]="carData.make" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="model">Model:</label>
-                                                <input type="text" class="signUpInput" id="model" name="model"
-                                                    [(ngModel)]="carData.model" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="year">Year:</label>
-                                                <input type="number" class="signUpInput" id="year" name="year"
-                                                    [(ngModel)]="carData.year" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="VIN">VIN:</label>
-                                                <input type="text" class="signUpInput" id="VIN" name="VIN"
-                                                    [(ngModel)]="carData.VIN" required />
-                                            </div>
-                                            <div class="form-zgroup">
-                                                <label for="license_plate_number">License Plate Number:</label>
-                                                <input type="text" class="signUpInput" id="license_plate_number"
-                                                    name="license_plate_number"
-                                                    [(ngModel)]="carData.license_plate_number" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="price">Price:</label>
-                                                <input type="number" class="signUpInput" id="price" name="price"
-                                                    [(ngModel)]="carData.price" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="color">Color:</label>
-                                                <input type="text" class="signUpInput" id="color" name="color"
-                                                    [(ngModel)]="carData.color" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="fuel_type">Fuel Type:</label>
-                                                <input type="text" class="signUpInput" id="fuel_type" name="fuel_type"
-                                                    [(ngModel)]="carData.fuel_type" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="transmission_type">Transmission Type:</label>
-                                                <input type="text" class="signUpInput" id="transmission_type"
-                                                    name="transmission_type" [(ngModel)]="carData.transmission_type"
-                                                    required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="quantity">Quantity:</label>
-                                                <input type="number" class="signUpInput" id="quantity" name="quantity"
-                                                    [(ngModel)]="carData.quantity" required />
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="signupbtn" [disabled]="loading"
-                                                    data-bs-dismiss="modal">
-                                                    Add Car
-                                                </button>
-                                                <button class="cancelBtn" data-bs-dismiss="modal">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 mt-5">
-                            <h2>List of Cars</h2>
-                            <div *ngIf="errorMessage" class="alert alert-danger">
-                                {{ errorMessage }}
-                            </div>
-                            <div *ngIf="cars.length === 0">No cars available.</div>
-                            <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger"
-                                class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Make</th>
-                                        <th>Model</th>
-                                        <th>Year</th>
-                                        <th>VIN</th>
-                                        <th>License Plate Number</th>
-                                        <th>Price</th>
-                                        <th>Color</th>
-                                        <th>Fuel Type</th>
-                                        <th>Transmission Type</th>
-                                        <th>Quantity</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let car of cars">
-                                        <td>{{ car.make }}</td>
-                                        <td>{{ car.model }}</td>
-                                        <td>{{ car.year }}</td>
-                                        <td>{{ car.VIN }}</td>
-                                        <td>{{ car.license_plate_number }}</td>
-                                        <td>{{ car.price }}</td>
-                                        <td>{{ car.color }}</td>
-                                        <td>{{ car.fuel_type }}</td>
-                                        <td>{{ car.transmission_type }}</td>
-                                        <td>{{ car.quantity }}</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-primary"
-                                                (click)="openEditModal(car)">Update</button>
-                                            <button class="btn btn-sm btn-danger"
-                                                (click)="deleteCar(car)">Delete</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                    <!-- Error Message -->
-                    <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
-                        <h4 class="alert-heading">Error!</h4>
-                        <hr />
-                        <p>
-                            {{ errorMessage }}
-                        </p>
-                    </div>
-                    <!-- Success Message -->
-                    <div class="alert alert-success" *ngIf="successMessage" role="alert">
-                        <h4 class="alert-heading">Success!</h4>
-                        <hr />
-                        <p>
-                            {{ successMessage }}
-                        </p>
-                    </div>
+            <div class="modal-body">
+              <form (ngSubmit)="addCar()">
+                <div class="form-group">
+                  <label for="make">Make:</label>
+                  <input type="text" class="signUpInput" id="make" name="make" [(ngModel)]="carData.make" required />
                 </div>
+                <div class="form-group">
+                  <label for="model">Model:</label>
+                  <input type="text" class="signUpInput" id="model" name="model" [(ngModel)]="carData.model" required />
+                </div>
+                <div class="form-group">
+                  <label for="year">Year:</label>
+                  <input type="number" class="signUpInput" id="year" name="year" [(ngModel)]="carData.year" required />
+                </div>
+                <div class="form-group">
+                  <label for="VIN">VIN:</label>
+                  <input type="text" class="signUpInput" id="VIN" name="VIN" [(ngModel)]="carData.VIN" required />
+                </div>
+                <div class="form-group">
+                  <label for="license_plate_number">License Plate Number:</label>
+                  <input type="text" class="signUpInput" id="license_plate_number" name="license_plate_number"
+                    [(ngModel)]="carData.license_plate_number" required />
+                </div>
+                <div class="form-group">
+                  <label for="price">Price:</label>
+                  <input type="number" class="signUpInput" id="price" name="price" [(ngModel)]="carData.price"
+                    required />
+                </div>
+                <div class="form-group">
+                  <label for="color">Color:</label>
+                  <input type="text" class="signUpInput" id="color" name="color" [(ngModel)]="carData.color" required />
+                </div>
+                <div class="form-group">
+                  <label for="fuel_type">Fuel Type:</label>
+                  <input type="text" class="signUpInput" id="fuel_type" name="fuel_type" [(ngModel)]="carData.fuel_type"
+                    required />
+                </div>
+                <div class="form-group">
+                  <label for="transmission_type">Transmission Type:</label>
+                  <input type="text" class="signUpInput" id="transmission_type" name="transmission_type"
+                    [(ngModel)]="carData.transmission_type" required />
+                </div>
+                <div class="form-group">
+                  <label for="quantity">Quantity:</label>
+                  <input type="number" class="signUpInput" id="quantity" name="quantity" [(ngModel)]="carData.quantity"
+                    required />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="signupbtn" [disabled]="loading" data-bs-dismiss="modal">
+                    Add Car
+                  </button>
+                  <button class="cancelBtn" data-bs-dismiss="modal">
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Error Message -->
+    <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+      <h4 class="alert-heading">Error!</h4>
+      <hr />
+      <p>
+        {{ errorMessage }}
+      </p>
+    </div>
+    <!-- Success Message -->
+    <div class="alert alert-success" *ngIf="successMessage" role="alert">
+      <h4 class="alert-heading">Success!</h4>
+      <hr />
+      <p>
+        {{ successMessage }}
+      </p>
+    </div>
+  </div>
+</div>

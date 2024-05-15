@@ -17,7 +17,8 @@ import { SalesRentalComponent } from './screens/sales-rental/sales-rental.compon
 import { UserManagementComponent } from './screens/user-management/user-management.component';
 import { ReportsComponent } from './screens/reports/reports.component';
 import { MaintenanceSchedulingComponent } from './screens/maintenance-scheduling/maintenance-scheduling.component';
-
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { MaintenanceSchedulingComponent } from './screens/maintenance-scheduling
     MaintenanceSchedulingComponent,
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -45,7 +47,7 @@ import { MaintenanceSchedulingComponent } from './screens/maintenance-scheduling
       },
     }),
   ],
-  providers: [ ServerService,CookieService],
+  providers: [ ServerService,CookieService,provideAnimations()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

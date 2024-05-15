@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -28,7 +29,47 @@ class AuthController extends Controller
      */
     public function signIn()
     {
+
         $credentials = request(['email', 'password']);
+
+        // Fetch all users with the provided email
+        $users = User::where('email', $credentials['email'])->get();
+
+        // Check if any user with the email exists
+        if ($users->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'code' => 404,
+                'message' => 'Email not found!'
+            ]);
+        }
+        // Check if there's an Active user
+        $activeUser = $users->firstWhere('status', 'Active');
+
+        if (!$activeUser) {
+            // If no Active user found
+            return response()->json([
+                'status' => false,
+                'code' => 403,
+                'message' => 'No Active user found with this account!'
+            ]);
+        }
+        // Attempt login with the credentials
+        try {
+            if (!JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'status' => false,
+                    'code' => 401,
+                    'message' => 'Email or Password is incorrect!'
+                ]);
+            }
+        } catch (JWTException $e) {
+            $response['status'] = 0;
+            $response['code'] = 500;
+            $response['message'] = 'Could not create token';
+            return response()->json($response);
+        }
+
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
