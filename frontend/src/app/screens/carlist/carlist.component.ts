@@ -44,7 +44,7 @@ export class CarlistComponent implements OnInit, OnDestroy {
   errorMessage: string | null = null;
   successMessage: string | null = null;
   loading: boolean = false;
-
+  userData: any = {};
   constructor(private serverService: ServerService, private token: TokenService, private router: Router) { }
 
   ngOnInit(): void {
@@ -54,6 +54,8 @@ export class CarlistComponent implements OnInit, OnDestroy {
     };
 
     this.fetchCars();
+    const data = this.token.get();
+    this.userData = data.user;
   }
 
   ngOnDestroy(): void {

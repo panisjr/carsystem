@@ -14,9 +14,11 @@ export class ReportsComponent implements OnInit {
   dtTrigger = new Subject<any>();
   errorMessage: string | null = null;
   successMessage: string | null = null;
+  userData: any = {};
   constructor(private router: Router, private token: TokenService) {}
   ngOnInit(): void {
-    this;
+    const data = this.token.get();
+    this.userData = data.user;
   }
   logout(){
     this.token.remove();

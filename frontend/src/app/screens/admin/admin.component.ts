@@ -10,13 +10,12 @@ import 'datatables.net-dt';
 })
 export class AdminComponent implements OnInit{
   accounts: any[] = [];
+  userData: any = {};
   dataTable: any;
-
-
   constructor(private router:Router, private token:TokenService){}
-
   ngOnInit(): void {
-      this.token.get()
+   const data = this.token.get();
+   this.userData = data.user;
   }
   logout(){
     this.token.remove();
