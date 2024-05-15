@@ -11,6 +11,7 @@
           class="navBtn mb-3 d-flex align-items-center justify-content-center"
           routerLinkActive="active"
           routerLink="/adminDashboard"
+          [routerLinkActiveOptions]="{ exact: true }"
         >
           <h3 class="bi bi-house"></h3>
           <p class="ms-4 p-2">Dashboard</p>
@@ -20,29 +21,31 @@
           routerLinkActive="active"
           routerLink="/carlist"
         >
-        <h3 class="bi bi-car-front-fill"></h3>
+        <h3 class="bi bi-car-front"></h3>
           <p class="ms-4 p-2">Vehicle Management</p>
         </div>
         <div
           class="navBtn mb-3 d-flex align-items-center justify-content-center"
           [routerLink]="['/userManagement']" routerLinkActive="active" 
+
         >
           <h3 class="bi bi-person-gear"></h3>
           <p class="ms-4 p-2">User Management</p>
         </div>
         <div
           class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/salesRental']" routerLinkActive="active" 
-
+          [routerLink]="['/salesRental']"
+          routerLinkActive="active"
         >
           <h3 class="bi bi-bar-chart"></h3>
           <p class="ms-4 p-2">Sales/Rental Management</p>
         </div>
         <div
           class="navBtn mb-3 d-flex align-items-center justify-content-center"
-          [routerLink]="['/history']"
           routerLinkActive="active"
+          [routerLink]="['/maintenance']"
         >
+          
           <h3 class="bi bi-calendar-week"></h3>
           <p class="ms-4 p-2">Maintenance Scheduling</p>
         </div>
@@ -51,7 +54,7 @@
           [routerLink]="['/reports']"
           routerLinkActive="active"
         >
-        <h3 class="bi bi-receipt"></h3>
+          <h3 class="bi bi-receipt"></h3>
           <p class="ms-4 p-2">Reports</p>
         </div>
         <div
@@ -67,55 +70,63 @@
       class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
     >
       <div class="col-12 d-flex justify-content-between border-bottom">
-        <div class="text-center ms-5">
-          <h2>Dashboard</h2>
+        <div class="text-center ms-5 d-flex align-items-center justify-content-center">
+          <h2 class="me-5">Sales and Rental Management</h2>
+          
         </div>
         <div class="p-2 me-3">
           <img src="/assets/profilepic.png" alt="profile" class="profile" />
         </div>
       </div>
-      <div class="col-12 d-flex align-items-center justify-content-around mt-5">
-        <div class="newCar p-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="text-white">+3</h2>
-            <h1 class="bi bi-car-front text-white"></h1>
-          </div>
-          <div class="d-flex">
-            <h5 class="text-white">New Car</h5>
-            <img class="scale" src="/assets/graphics.png" alt="scale" />
-          </div>
+      <div class="col-12 mt-5">
+        <h2>List of Sales</h2>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
         </div>
-        <div class="users p-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="text-white">+3</h2>
-            <h1 class="bi bi-people text-white"></h1>
-          </div>
-          <div class="d-flex">
-            <h5 class="text-white">New User</h5>
-            <img class="scale" src="/assets/graphics.png" alt="scale" />
-          </div>
-        </div>
-        <div class="newRent p-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="text-white">+3</h2>
-            <img src="/assets/rent.png" alt="rent icon" class="rentIcon" />
-          </div>
-          <div class="d-flex">
-            <h5 class="text-white">New Rent</h5>
-            <img class="scale" src="/assets/graphics.png" alt="scale" />
-          </div>
-        </div>
-        <div class="underMaintenance p-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="text-white">+3</h2>
-            <h1 class="bi bi-tools text-white"></h1>
-          </div>
-          <div class="d-flex">
-            <h5 class="text-white">Under Maintenance</h5>
-            <img class="scale" src="/assets/graphics.png" alt="scale" />
-          </div>
-        </div>
+        <div *ngIf="sales.length === 0">No sales available.</div>
+
+        <table
+          datatable
+          [dtOptions]="dtoptions"
+          [dtTrigger]="dtTrigger"
+          class="table table-bordered"
+        >
+          <thead>
+            <tr>
+              <th>Car</th>
+              <th>Plate No.</th>
+              <th>Contact</th>
+              <th>Role</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sale of sales">
+              <td>{{ sale.car }}</td>
+              <td>{{ sale.email }}</td>
+              <td>{{ sale.contact }}</td>
+              <td>{{ sale.role }}</td>
+              <td>{{ sale.status }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+    <!-- Error Message -->
+    <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+      <h4 class="alert-heading">Error!</h4>
+      <hr />
+      <p>
+        {{ errorMessage }}
+      </p>
+    </div>
+    <!-- Success Message -->
+    <div class="alert alert-danger" *ngIf="successMessage" role="alert">
+      <h4 class="alert-heading">Error!</h4>
+      <hr />
+      <p>
+        {{ successMessage }}
+      </p>
     </div>
   </div>
 </div>
