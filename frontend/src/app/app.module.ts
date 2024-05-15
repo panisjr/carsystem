@@ -20,6 +20,7 @@ import { MaintenanceSchedulingComponent } from './screens/maintenance-scheduling
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     RouterModule,
     FormsModule,
+    RouterModule,
     HttpClientModule,
     DataTablesModule,
     ToastrModule.forRoot(), 
