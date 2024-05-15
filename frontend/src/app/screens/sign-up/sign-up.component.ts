@@ -13,7 +13,7 @@ export class SignUpComponent {
   lastname: string = '';
   email: string = '';
   contact: string = '';
-  role: string = 'Admin';
+  role: string = 'Customer';
   status: boolean = true;
   password: string = '';
   confirm_password: string = '';
@@ -76,9 +76,5 @@ export class SignUpComponent {
     this.password = '';
     this.confirm_password = '';
     this.profileFile = null;
-  }
-
-  goToPage(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
   }
 }

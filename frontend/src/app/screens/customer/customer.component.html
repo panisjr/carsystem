@@ -1,1 +1,86 @@
-<p>Customer dashboard</p>
+<div class="container-fluid">
+    <div class="row vh-100">
+      <div class="col-sm-6 col-md-5 col-lg-2 navBar">
+        <div class="input-group align-items-center justify-content-center">
+          <img class="logo" src="/assets/logo.png" />
+          <h3 class="signUp text-center">AutoGaurdian</h3>
+        </div>
+  
+        <nav class="selection mt-3">
+          <div
+            class="navBtn mb-3 d-flex align-items-center justify-content-center"
+            routerLinkActive="active"
+            routerLink="/customerDashboard"
+          >
+            <h3 class="bi bi-house"></h3>
+            <p class="ms-4 p-2">Dashboard</p>
+          </div>
+          <div
+            class="navBtn mb-3 d-flex align-items-center justify-content-center"
+            routerLinkActive="active"
+            routerLink="/carlist"
+          >
+            <h3 class="bi bi-car-front-fill"></h3>
+            <p class="ms-4 p-2">Vehicle Management</p>
+          </div>
+          <div
+            class="navBtn mb-3 d-flex align-items-center justify-content-center"
+            [routerLink]="['/userManagement']"
+            routerLinkActive="active"
+          >
+            <h3 class="bi bi-person-gear"></h3>
+            <p class="ms-4 p-2">User Management</p>
+          </div>
+          <div
+            class="navBtn mb-3 d-flex align-items-center justify-content-center"
+            [routerLink]="['/salesRental']"
+            routerLinkActive="active"
+          >
+            <h3 class="bi bi-bar-chart"></h3>
+            <p class="ms-4 p-2">Sales/Rental Management</p>
+          </div>
+          <div
+            class="navBtn mb-3 d-flex align-items-center justify-content-center"
+            [routerLink]="['/history']"
+            routerLinkActive="active"
+          >
+            <h3 class="bi bi-calendar-week"></h3>
+            <p class="ms-4 p-2">Maintenance Scheduling</p>
+          </div>
+          <div
+            class="navBtn mb-3 d-flex align-items-center justify-content-center"
+            [routerLink]="['/reports']"
+            routerLinkActive="active"
+          >
+            <h3 class="bi bi-receipt"></h3>
+            <p class="ms-4 p-2">Reports</p>
+          </div>
+          <div
+            class="logoutBtn d-flex align-items-center justify-content-center"
+            (click)="logout()"
+          >
+            <h3 class="bi bi-box-arrow-left"></h3>
+            <p class="ms-4 p-2">Logout</p>
+          </div>
+        </nav>
+      </div>
+      <div
+        class="col-sm-6 col-md-5 offset-md-2 col-lg-10 offset-lg-0 rightSideContent"
+      >
+        <div class="col-12 d-flex justify-content-between border-bottom">
+          <div
+            class="text-center ms-5 d-flex align-items-center justify-content-center"
+          >
+            <h2>Dashboard</h2>
+          </div>
+          <div class="p-2 me-5 d-flex align-items-center justify-content-center">
+            <p class="me-3 pt-3">
+              {{ userData.firstname }}{{ " " }}{{ userData.lastname }}
+            </p>
+            <img src="/assets/profilepic.png" alt="profile" class="profile" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

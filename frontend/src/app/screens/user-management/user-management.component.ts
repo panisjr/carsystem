@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../../services/server.service';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-user-management',
@@ -10,17 +10,18 @@ import { Subject } from 'rxjs';
   styleUrl: './user-management.component.css'
 })
 export class UserManagementComponent implements OnInit {
-  user = {
-    firstname: '',
-    middlename: '',
-    lastname: '',
-    email: '',
-    contact: '',
-    password: '',
-    confirm_password: '',
-    status: null,
-    role: 'Customer',
-  };
+   //User Credentials
+   firstname: string = '';
+   middlename: string = '';
+   lastname: string = '';
+   email: string = '';
+   contact: string = '';
+   role: string = 'Customer';
+   status: boolean = true;
+   password: string = '';
+   confirm_password: string = '';
+   profileFile: File | null = null;
+
   users: any[] = [];
   dtoptions: any = {}; // Add this for datatable options
   dtTrigger = new Subject<any>();
@@ -52,32 +53,35 @@ export class UserManagementComponent implements OnInit {
     );
   }
 
-  addUser() {
-    this.loading = true;
-    this.serverService.addCar(this.user).subscribe(
+  onFileSelected(event: any){
+    if(event.target.files && event.target.files.length > 0){
+      this.profileFile = event.target.files[0];
+    }
+  }
+  signUp(){
+    const formData = new FormData();
+    formData.append('firstname', this.firstname);
+    formData.append('middlename', this.middlename);
+    formData.append('lastname', this.lastname);
+    formData.append('email', this.email);
+    formData.append('contact', this.contact);
+    formData.append('role', this.role);
+    formData.append('status', String(this.status));
+    formData.append('password', this.password);
+    formData.append('confirm_password', this.confirm_password);
+    if(this.profileFile){
+      formData.append('profileFile',this.profileFile);
+    }
+    this.serverService.signUp(formData).subscribe(
       (response: any) => {
-        this.loading = false;
-        this.successMessage = 'Car added successfully.';
+        this.successMessage = response.message;
         setTimeout(() => {
+          this.resetForm();
           this.successMessage = null;
-        }, 3500);
-
-        this.user = {
-          firstname: '',
-          middlename: '',
-          lastname: '',
-          email: '',
-          contact: '',
-          password: '',
-          confirm_password: '',
-          status: null,
-          role: 'Customer',
-        };
+        }, 3000);
       },
       (error) => {
-        this.loading = false;
-        this.errorMessage =
-          error.error.message || 'An error occurred while adding the car.';
+        this.errorMessage = error.error.message;
         setTimeout(() => {
           this.errorMessage = null;
         }, 3500);
@@ -88,5 +92,15 @@ export class UserManagementComponent implements OnInit {
   logout() {
     this.token.remove();
     this.router.navigate(['/signIn']);
+  }
+  resetForm() {
+    this.firstname = '';
+    this.middlename = '';
+    this.lastname = '';
+    this.email = '';
+    this.contact = '';
+    this.password = '';
+    this.confirm_password = '';
+    this.profileFile = null;
   }
 }

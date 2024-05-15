@@ -37,21 +37,6 @@ export class ServerService {
   }
   // End Sign In and Sign Up
 
-  getTotalAccounts(): Observable<any> {
-    return this.http.get<{ totalAccounts: number; totalBooks: number }>(
-      `${this.apiUrl}/getTotalAccounts`
-    );
-  }
-  getTodayRegisteredUsersCount() {
-    return this.http.get<{ count: number }>(
-      `${this.apiUrl}/users/todayRegisteredUsersCount`
-    );
-  }
-  getTodayRegisteredBooksCount() {
-    return this.http.get<{ count: number }>(
-      `${this.apiUrl}/users/todayRegisteredBooksCount`
-    );
-  }
   // CRUD User Management
   getUsers() {
     return this.http.get(`${this.apiUrl}/getUsers`);
@@ -64,6 +49,16 @@ export class ServerService {
   }
   deactivate(userId: number, data: any) {
     return this.http.post(`${this.apiUrl}/deactivate/${userId}`, data);
+  }
+  getTotalAccounts(): Observable<any> {
+    return this.http.get<{ totalAccounts: number; totalBooks: number }>(
+      `${this.apiUrl}/getTotalAccounts`
+    );
+  }
+  getTodayRegisteredUsersCount() {
+    return this.http.get<{ count: number }>(
+      `${this.apiUrl}/users/todayRegisteredUsersCount`
+    );
   }
   // End CRUD User Management 
 
