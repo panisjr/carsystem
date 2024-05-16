@@ -54,7 +54,8 @@
         </div>
         <div class="p-2  me-5 d-flex align-items-center justify-content-center">
           <p class="me-3 pt-3">{{userData.firstname}}{{" "}}{{userData.lastname}}</p>
-          <img src="/assets/profilepic.png" alt="profile" class="profile" />
+          <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" class="profile" alt="Profile Picture">
+          <img *ngIf="!profilePictureUrl" src="/assets/profilepic.png" alt="profile" class="profile" />
         </div>
       </div>
       <div class="col-12 mt-5">

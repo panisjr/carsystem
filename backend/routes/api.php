@@ -43,6 +43,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser']);
     Route::put('/updateUser/{id}', [UserController::class, 'updateUser']);
     Route::post('/deactivate/{id}', [UserController::class, 'deactivate']);
+    Route::get('profile-picture/{userId}', [UserController::class, 'show']);
 
     // History
     Route::post('/history', [UserController::class, 'history']);

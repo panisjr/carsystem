@@ -77,7 +77,8 @@
           <p class="me-3 pt-3">
             {{ userData.firstname }}{{ " " }}{{ userData.lastname }}
           </p>
-          <img src="/assets/profilepic.png" alt="profile" class="profile" />
+          <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" class="profile" alt="Profile Picture">
+          <img *ngIf="!profilePictureUrl" src="/assets/profilepic.png" alt="profile" class="profile" />
         </div>
       </div>
       <h4 class="m-5">Today's Update!</h4>

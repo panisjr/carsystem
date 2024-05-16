@@ -112,7 +112,7 @@ class AuthController extends Controller
             if ($uploadedFile !== null) {
                 // Process the file if it exists
                 $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-                $filePath = $uploadedFile->storeAs('uploads', $fileName);
+                $filePath = $uploadedFile->storeAs('uploads', $fileName,'uploads');
             } else {
                 // If no file was uploaded, set the file path to null or an empty string
                 $filePath = null; // Or you can set it to an empty string depending on your requirements
@@ -144,7 +144,7 @@ class AuthController extends Controller
         if ($uploadedFile !== null) {
             // Process the file if it exists
             $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-            $filePath = $uploadedFile->storeAs('uploads', $fileName);
+            $filePath = $uploadedFile->storeAs('uploads', $fileName,'uploads');
         } else {
             // If no file was uploaded, set the file path to null or an empty string
             $filePath = null; // Or you can set it to an empty string depending on your requirements
