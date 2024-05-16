@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../../services/server.service';
 
 @Component({
@@ -12,13 +12,74 @@ export class CustomerComponent implements OnInit {
   errorMessage: string | null = null;
   successMessage: string | null = null;
   userData: any = {};
- constructor(private router: Router, private token: TokenService){}
-ngOnInit(): void {
+  cars: any[] = [];
+  filteredCars: any[] = [];
+  searchQuery: string = '';
+  selectedTransmission: string | null = null; // Selected transmission type
+  selectedFuelType: string | null = null; // Selected fuel type
+
+  selectedCar: any = null; // Selected car for modal
+  showModal: boolean = false; // Control modal visibility
+
+  constructor(private router: Router, private token: TokenService, private serverService: ServerService) { }
+
+  ngOnInit(): void {
     const data = this.token.get();
     this.userData = data.user;
-}
-logout(){
-  this.token.remove();
-  this.router.navigate(['/signIn'])
-}
+
+    this.fetchCars();
+  }
+
+  fetchCars(): void {
+    this.serverService.getCars().subscribe(
+      (cars: any[]) => {
+        this.cars = cars;
+        this.filteredCars = cars;
+      },
+      (error) => {
+        this.errorMessage = "Failed to load cars.";
+      }
+    );
+  }
+
+  logout(): void {
+    this.token.remove();
+    this.router.navigate(['/signIn']);
+  }
+
+  filterCars(): void {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredCars = this.cars.filter(car =>
+      (car.make.toLowerCase().includes(query) ||
+        car.model.toLowerCase().includes(query) ||
+        car.year.toString().includes(query) ||
+        car.price.toString().includes(query)) &&
+      (!this.selectedTransmission || car.transmission_type === this.selectedTransmission) && // Filter by transmission type
+      (!this.selectedFuelType || car.fuel_type === this.selectedFuelType) // Filter by fuel type
+    );
+  }
+
+  openModal(car: any): void {
+    this.selectedCar = car;
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.selectedCar = null;
+  }
+
+  clearFilters(): void {
+    this.selectedTransmission = null;
+    this.selectedFuelType = null;
+    this.filterCars();
+  }
+//temporary to hide error
+  buyCar(car: any){
+
+  }
+
+  rentCar(car: any){
+
+  }
 }
