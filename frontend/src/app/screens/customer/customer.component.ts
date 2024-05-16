@@ -20,6 +20,7 @@ export class CustomerComponent implements OnInit {
 
   selectedCar: any = null; // Selected car for modal
   showModal: boolean = false; // Control modal visibility
+  profilePictureUrl: string | null = null; 
 
   constructor(private router: Router, private token: TokenService, private serverService: ServerService) { }
 
@@ -40,6 +41,9 @@ export class CustomerComponent implements OnInit {
         this.errorMessage = "Failed to load cars.";
       }
     );
+    if (this.userData.profileFile) {
+      this.profilePictureUrl = `http://localhost:8000/storage/${this.userData.profileFile}`;
+    }
   }
 
   logout(): void {
