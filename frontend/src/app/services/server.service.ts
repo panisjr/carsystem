@@ -122,4 +122,8 @@ export class ServerService {
   buyCar(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/sales`, data);
   }
+
+  submitPendingRequest(requestData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/pending-requests`, requestData);
+  }
 }

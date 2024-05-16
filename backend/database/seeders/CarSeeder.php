@@ -23,7 +23,6 @@ class CarSeeder extends Seeder
                 'color' => $faker->safeColorName,
                 'fuel_type' => $faker->randomElement(['Gasoline', 'Diesel', 'Electric']),
                 'transmission_type' => $faker->randomElement(['Automatic', 'Manual']),
-                'quantity' => $faker->numberBetween(1, 20),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

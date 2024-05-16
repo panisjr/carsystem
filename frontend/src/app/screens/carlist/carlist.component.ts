@@ -22,7 +22,6 @@ export class CarlistComponent implements OnInit {
     color: '',
     fuel_type: '',
     transmission_type: '',
-    quantity: null,
   };
 
   editCarData = {
@@ -35,7 +34,6 @@ export class CarlistComponent implements OnInit {
     color: '',
     fuel_type: '',
     transmission_type: '',
-    quantity: null,
   };
 
   cars: any[] = [];
@@ -95,7 +93,6 @@ export class CarlistComponent implements OnInit {
           color: '',
           fuel_type: '',
           transmission_type: '',
-          quantity: null,
         };
         this.fetchCars();
       },
@@ -160,7 +157,6 @@ export class CarlistComponent implements OnInit {
       color: '',
       fuel_type: '',
       transmission_type: '',
-      quantity: null,
     };
     this.editing = false;
   }

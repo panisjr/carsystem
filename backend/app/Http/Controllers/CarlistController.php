@@ -29,7 +29,6 @@ public function todayRegisteredCarsCount(){
             'color' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'fuel_type' => 'required|string|in:Gasoline,Diesel,Electric',
             'transmission_type' => 'required|string|in:Automatic,Manual',
-            'quantity' => 'required|integer|min:1',
         ]);
 
         $car = Car::create($request->all());

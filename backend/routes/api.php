@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\PendingRequestController;
 
 
 
@@ -55,4 +56,10 @@ Route::group(['middleware' => 'api'], function ($router) {
     
     //Sales
     Route::post('/sales', [SaleController::class, 'store']);
+
+    //Request
+    Route::post('/pending-requests', [PendingRequestController::class, 'store']);
+    Route::get('/pending-requests', [PendingRequestController::class, 'index']);
+    Route::post('/pending-requests/{id}/approve', [PendingRequestController::class, 'approve']);
+    Route::post('/pending-requests/{id}/reject', [PendingRequestController::class, 'reject']);
 });

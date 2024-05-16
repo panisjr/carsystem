@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Car extends Model
+class PendingRequest extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'make',
-        'model',
-        'year',
-        'VIN',
-        'license_plate_number',
-        'price',
-        'color',
-        'fuel_type',
-        'transmission_type',
+        'car_name',
+        'customer_name',
         'status',
+        'requested_at',
     ];
 }

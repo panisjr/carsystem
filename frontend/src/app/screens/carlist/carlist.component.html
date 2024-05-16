@@ -75,7 +75,6 @@
               <th>Color</th>
               <th>Fuel Type</th>
               <th>Transmission Type</th>
-              <th>Quantity</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -90,7 +89,6 @@
               <td>{{ car.color }}</td>
               <td>{{ car.fuel_type }}</td>
               <td>{{ car.transmission_type }}</td>
-              <td>{{ car.quantity }}</td>
               <td>
                 <button
                 class="btn btn-sm btn-success me-3"
@@ -164,11 +162,6 @@
                   <input type="text" class="signUpInput" id="transmission_type" name="transmission_type"
                     [(ngModel)]="carData.transmission_type" required />
                 </div>
-                <div class="form-group">
-                  <label for="quantity">Quantity:</label>
-                  <input type="number" class="signUpInput" id="quantity" name="quantity" [(ngModel)]="carData.quantity"
-                    required />
-                </div>
                 <div class="modal-footer">
                   <button
                   [ngClass]="{
@@ -228,10 +221,6 @@
               <p class="me-2">
                 <b>Price:</b>
                 {{ carData.price }}
-              </p>
-              <p class="me-2">
-                <b>Quantity:</b>
-                {{ carData.quantity }}
               </p>
             </div>
 

@@ -58,7 +58,7 @@
       <!-- New div to display "hello" -->
       <div class="mt-3">
         <div class="search-filter-container">
-          <div class="search-filter-container"> <!-- Wrap search bar and filter bar -->
+          <div class="search-filter-container"> 
             <div class="search-bar">
               <input type="text" placeholder="Search cars..." [(ngModel)]="searchQuery" (input)="filterCars()" />
             </div>
@@ -92,7 +92,6 @@
             <p>Price: {{ car.price }}</p>
             <!-- Inside the car-item div -->
             <div>
-                <!--still not working-->
               <button class="btn btn-primary buy-btn" (click)="buyCar(car)">Buy</button>
               <button class="btn btn-success rent-btn" (click)="rentCar(car)">Rent</button>
             </div>
@@ -110,6 +109,7 @@
                 <img *ngIf="!selectedCar.image_url" src="../../../assets/car_image.png" alt="Default Car Image"
                   class="carImage">
               </div>
+              <p>Model: {{selectedCar.model}}</p>
               <p>Year: {{ selectedCar.year }}</p>
               <p>Price: {{ selectedCar.price }}</p>
               <p>Color: {{ selectedCar.color }}</p>
