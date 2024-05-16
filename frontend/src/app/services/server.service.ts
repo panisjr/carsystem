@@ -118,4 +118,8 @@ export class ServerService {
   getReportData(): Observable<any> {
     return this.http.get(`${this.apiUrl}/sales`);
   }
+
+  buyCar(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/sales`, data);
+  }
 }

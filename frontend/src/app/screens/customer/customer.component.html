@@ -82,11 +82,11 @@
             </div>
           </div>
 
-          <div *ngFor="let car of filteredCars" class="car-item mt-3" (click)="openModal(car)">
+          <div *ngFor="let car of filteredCars" class="car-item mt-3">
             <h2>{{ car.make }} {{ car.model }}</h2>
-            <div class="mt-3">
+            <div class="mt-3"  (click)="openModal(car)">
               <img *ngIf="car.image_url" [src]="car.image_url" alt="{{ car.make }} {{ car.model }}" class="carImage">
-              <img *ngIf="!car.image_url" src="../../../assets/car_image.jpg" alt="Default Car Image" class="carImage">
+              <img *ngIf="!car.image_url" src="../../../assets/car_image.png" alt="Default Car Image" class="carImage">
             </div>
             <p>Year: {{ car.year }}</p>
             <p>Price: {{ car.price }}</p>
@@ -107,7 +107,7 @@
               <div class="mt-3">
                 <img *ngIf="selectedCar.image_url" [src]="selectedCar.image_url"
                   alt="{{ selectedCar.make }} {{ selectedCar.model }}" class="carImage">
-                <img *ngIf="!selectedCar.image_url" src="../../../assets/car_image.jpg" alt="Default Car Image"
+                <img *ngIf="!selectedCar.image_url" src="../../../assets/car_image.png" alt="Default Car Image"
                   class="carImage">
               </div>
               <p>Year: {{ selectedCar.year }}</p>
@@ -117,11 +117,6 @@
               <p>Transmission Type: {{ selectedCar.transmission_type }}</p>
               <p>Quantity: {{ selectedCar.quantity }}</p>
               <!-- Add other car details as needed -->
-              <div class="d-flex justify-content-end mt-3">
-                <!--still not working-->
-                <button class="btn btn-primary buy-btn" (click)="buyCar(cars)">Buy</button>
-                <button class="btn btn-success rent-btn" (click)="rentCar(cars)">Rent</button>
-            </div>
             </div>
           </div>
 

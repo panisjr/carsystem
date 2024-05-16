@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../../services/server.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-customer',
@@ -21,7 +22,7 @@ export class CustomerComponent implements OnInit {
   selectedCar: any = null; // Selected car for modal
   showModal: boolean = false; // Control modal visibility
 
-  constructor(private router: Router, private token: TokenService, private serverService: ServerService) { }
+  constructor(private router: Router, private token: TokenService, private serverService: ServerService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     const data = this.token.get();
@@ -54,8 +55,8 @@ export class CustomerComponent implements OnInit {
         car.model.toLowerCase().includes(query) ||
         car.year.toString().includes(query) ||
         car.price.toString().includes(query)) &&
-      (!this.selectedTransmission || car.transmission_type === this.selectedTransmission) && // Filter by transmission type
-      (!this.selectedFuelType || car.fuel_type === this.selectedFuelType) // Filter by fuel type
+      (!this.selectedTransmission || car.transmission_type === this.selectedTransmission) &&
+      (!this.selectedFuelType || car.fuel_type === this.selectedFuelType)
     );
   }
 
@@ -74,12 +75,27 @@ export class CustomerComponent implements OnInit {
     this.selectedFuelType = null;
     this.filterCars();
   }
-//temporary to hide error
-  buyCar(car: any){
+  //temporary to hide error
+  buyCar(car: any) {
+    const saleData = {
+      car_name: `${car.make} ${car.model}`,
+      customer_name: `${this.userData.firstname} ${this.userData.lastname}`,
+      status: 'Bought',
+      bought_at: new Date()
+    };
 
+    this.serverService.buyCar(saleData).subscribe(
+      (response: any) => {
+        this.toastr.success(response.message);
+        this.fetchCars();
+      },
+      (error) => {
+        this.toastr.error(error.error.message, 'Error buying car!');
+      }
+    );
   }
 
-  rentCar(car: any){
+  rentCar(car: any) {
 
   }
 }
