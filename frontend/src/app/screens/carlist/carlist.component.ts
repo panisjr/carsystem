@@ -44,6 +44,7 @@ export class CarlistComponent implements OnInit {
   loading: boolean = false;
   userData: any = {};
   editing: boolean = false;
+  profilePictureUrl: string | null = null; 
   constructor(
     private serverService: ServerService,
     private token: TokenService,
@@ -59,6 +60,9 @@ export class CarlistComponent implements OnInit {
     this.fetchCars();
     const data = this.token.get();
     this.userData = data.user;
+    if (this.userData.profileFile) {
+      this.profilePictureUrl = `http://localhost:8000/storage/${this.userData.profileFile}`;
+    }
   }
 
   fetchCars() {

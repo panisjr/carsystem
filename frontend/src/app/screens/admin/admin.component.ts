@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
   todayRegisteredCarsCount: number = 0;
   totalUsers: number = 0;
   totalCars: number = 0;
+  profilePictureUrl: string | null = null; 
   constructor(
     private router: Router,
     private token: TokenService,
@@ -39,6 +40,9 @@ export class AdminComponent implements OnInit {
       this.totalUsers = response.totalUsers;
       this.totalCars = response.totalCars;
     });
+    if (this.userData.profileFile) {
+      this.profilePictureUrl = `http://localhost:8000/storage/${this.userData.profileFile}`;
+    }
   }
   logout() {
     this.token.remove();

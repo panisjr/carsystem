@@ -84,9 +84,9 @@
 
           <div *ngFor="let car of filteredCars" class="car-item mt-3">
             <h2>{{ car.make }} {{ car.model }}</h2>
-            <div class="mt-3"  (click)="openModal(car)">
-              <img *ngIf="car.image_url" [src]="car.image_url" alt="{{ car.make }} {{ car.model }}" class="carImage">
-              <img *ngIf="!car.image_url" src="../../../assets/car_image.png" alt="Default Car Image" class="carImage">
+            <div class="mt-3">
+              <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" class="profile" alt="Profile Picture">
+          <img *ngIf="!profilePictureUrl" src="/assets/profilepic.png" alt="profile" class="profile" />
             </div>
             <p>Year: {{ car.year }}</p>
             <p>Price: {{ car.price }}</p>

@@ -31,6 +31,7 @@ export class UserManagementComponent implements OnInit {
   editing: boolean = false;
   loading: boolean = false;
   userData: any = {};
+  profilePictureUrl: string | null = null; 
   constructor(
     private serverService: ServerService,
     private token: TokenService,
@@ -45,12 +46,16 @@ export class UserManagementComponent implements OnInit {
     this.getUsers();
     const data = this.token.get();
     this.userData = data.user;
+    if (this.userData.profileFile) {
+      this.profilePictureUrl = `http://localhost:8000/storage/${this.userData.profileFile}`;
+    }
   }
 
   getUsers(): void {
     this.serverService.getUsers().subscribe(
       (response: any) => {
         this.users = response;
+       
         if (this.users) {
           this.dtTrigger.unsubscribe();
         }
@@ -214,6 +219,7 @@ export class UserManagementComponent implements OnInit {
       role: this.role,
       profileFile: this.profileFile,
     };
+    console.log(bodyData);
     if (accountId === this.userData.id) {
       console.log(this.userData.email);
       if (bodyData.role !== 'Admin') {

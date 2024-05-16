@@ -49,8 +49,9 @@ width: 140px;
 .border-bottom{
   border-bottom: 2px solid rgb(0, 0, 0);
 }
-.profile{
+.profile {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 .newCar{

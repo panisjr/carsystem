@@ -19,8 +19,9 @@ export class CustomerComponent implements OnInit {
   selectedTransmission: string | null = null;
   selectedFuelType: string | null = null;
 
-  selectedCar: any = null;
-  showModal: boolean = false;
+  selectedCar: any = null; // Selected car for modal
+  showModal: boolean = false; // Control modal visibility
+  profilePictureUrl: string | null = null; 
 
   constructor(
     private router: Router,
@@ -46,6 +47,9 @@ export class CustomerComponent implements OnInit {
         this.errorMessage = 'Failed to load cars.';
       }
     );
+    if (this.userData.profileFile) {
+      this.profilePictureUrl = `http://localhost:8000/storage/${this.userData.profileFile}`;
+    }
   }
 
   logout(): void {

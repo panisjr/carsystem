@@ -119,19 +119,22 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $user = $this->user->find($id);
-
+        $user = User::findOrFail($id);
+    
         if (!$user) {
             return response()->json([
                 'success' => false,
                 'message' => 'User not found',
             ], 404);
         }
-
-        return response()->json([
-            'success' => true,
-            'data' => $user,
-        ]);
+        $profilePicturePath = $user->profileFile; // Adjust this based on your user model
+        $path = storage_path('app/uploads/' . $profilePicturePath);
+    
+        return response()->file($path);
+        // return response()->json([
+        //     'success' => true,
+        //     'data' => $user,
+        // ]);
     }
     public function updateUser(Request $request, string $id)
     {
