@@ -92,6 +92,7 @@
             <p>Price: {{ car.price }}</p>
             <!-- Inside the car-item div -->
             <div>
+                <!--still not working-->
               <button class="btn btn-primary buy-btn" (click)="buyCar(car)">Buy</button>
               <button class="btn btn-success rent-btn" (click)="rentCar(car)">Rent</button>
             </div>
@@ -116,6 +117,11 @@
               <p>Transmission Type: {{ selectedCar.transmission_type }}</p>
               <p>Quantity: {{ selectedCar.quantity }}</p>
               <!-- Add other car details as needed -->
+              <div class="d-flex justify-content-end mt-3">
+                <!--still not working-->
+                <button class="btn btn-primary buy-btn" (click)="buyCar(cars)">Buy</button>
+                <button class="btn btn-success rent-btn" (click)="rentCar(cars)">Rent</button>
+            </div>
             </div>
           </div>
 
