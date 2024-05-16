@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from './services/token.service';
 
@@ -7,26 +7,37 @@ import { TokenService } from './services/token.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  userData: any = {};
   constructor(
     private router: Router,
     private cookieService: CookieService,
     private token: TokenService
   ) {}
 
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot ): boolean {
     const token = this.cookieService.get('access_token');
-    if (token === 'undefined') {
-      console.log('Access token is undefined.');
-        this.token.remove();
-        this.router.navigate(['/signIn']);
+    const data = this.token.get();
+    this.userData = data.user;
+    if (!token || !data || !this.userData.role) {
+      // Redirect to sign-in if token, user data, or role is missing
+      this.router.navigate(['/signIn']);
       return false;
-    } else {
-      if (token) {
-        return true; // Allow access to the route if the JWT token is present
-      } else {
-        this.router.navigate(['/signIn']);
-        return false; // Deny access to the route if the user is not logged in
-      }
     }
+
+    // Check the user's role and redirect accordingly
+    if (route.data['expectedRole'] === 'Admin' && this.userData.role !== 'Admin') {
+      console.log(route.data['expectedRole'] );
+      // Redirect to customer dashboard if trying to access admin route
+      this.router.navigate(['/customerDashboard']);
+      return false;
+    } else if (route.data['expectedRole'] === 'Customer' && this.userData.role !== 'Customer') {
+      console.log(route.data['expectedRole'] );
+
+      // Redirect to admin dashboard if trying to access customer route
+      this.router.navigate(['/adminDashboard']);
+      return false;
+    }
+
+    return true;
   }
 }

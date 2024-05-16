@@ -82,7 +82,7 @@
       </div>
       <h4 class="m-5">Today's Update!</h4>
       <div class="col-12 d-flex align-items-center justify-content-around mt-5">
-        <div class="newCar p-4">
+        <div class="newCar p-4 box-shadow">
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-white">+{{ todayRegisteredCarsCount }}</h2>
             <h1 class="bi bi-car-front text-white"></h1>
@@ -92,7 +92,7 @@
             <img class="scale" src="/assets/graphics.png" alt="scale" />
           </div>
         </div>
-        <div class="users p-4">
+        <div class="users p-4 box-shadow">
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-white">+{{ todayRegisteredUsersCount }}</h2>
             <h1 class="bi bi-people text-white"></h1>
@@ -102,7 +102,7 @@
             <img class="scale" src="/assets/graphics.png" alt="scale" />
           </div>
         </div>
-        <div class="newRent p-4">
+        <div class="newRent p-4 box-shadow">
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-white">+3</h2>
             <img src="/assets/rent.png" alt="rent icon" class="rentIcon" />
@@ -112,7 +112,7 @@
             <img class="scale" src="/assets/graphics.png" alt="scale" />
           </div>
         </div>
-        <div class="underMaintenance p-4">
+        <div class="underMaintenance p-4 box-shadow">
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-white">+3</h2>
             <h1 class="bi bi-tools text-white"></h1>
@@ -121,6 +121,22 @@
             <h5 class="text-white">Under Maintenance</h5>
             <img class="scale" src="/assets/graphics.png" alt="scale" />
           </div>
+        </div>
+      </div>
+      <div class="row mt-5 align-items-center justify-content-center">
+        <div class=" col-5 p-5  d-flex align-items-center justify-content-evenly">
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="/assets/totalCars.png" class="totalCars me-5" alt="totalUsers">
+              <h5 class="me-5">Total Cars</h5>
+              <h1 class="signUp" >+{{ totalCars }}</h1>
+            </div>
+        </div>
+        <div class="col-6 p-5 d-flex align-items-center justify-content-evenly">
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="/assets/totalUsers.png" class="totalUsers" alt="totalUsers">
+              <h5 class="me-5">Total Users</h5>
+              <h1 class="signUp">+{{ totalUsers }}</h1>
+            </div>
         </div>
       </div>
     </div>

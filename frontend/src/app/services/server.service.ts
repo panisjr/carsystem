@@ -66,10 +66,8 @@ export class ServerService {
   }
 
   // Displaying Data in Admin Dashboard
-  getTotalAccounts(): Observable<any> {
-    return this.http.get<{ totalAccounts: number; totalBooks: number }>(
-      `${this.apiUrl}/getTotalAccounts`
-    );
+  getTotal(): Observable<any> {
+    return this.http.get<{ totalAccounts: number, totalBooks: number }>(`${this.apiUrl}/getTotal`);
   }
 
   getTodayRegisteredUsersCount() {

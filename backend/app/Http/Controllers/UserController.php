@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule; // Import Rule class for validation
 use Illuminate\Support\Facades\Validator; // Import Validator class for validation
@@ -25,10 +26,11 @@ class UserController extends Controller
     {
         return $this->user->all();
     }
-    public function getTotalAccounts()
+    public function getTotal()
     {
-        $totalAccounts = User::count();
-        return response()->json(['totalAccounts' => $totalAccounts]);
+        $totalUsers = User::count();
+        $totalCars = Car::count();
+        return response()->json(['totalUsers' => $totalUsers ,'totalCars' => $totalCars]);
     }
     public function todayRegisteredUsersCount()
     {
@@ -150,8 +152,8 @@ class UserController extends Controller
             'lastname' => 'required|regex:/^[a-zA-Z\s\-\.]+$/|not_regex:/[^\x00-\x7F]+/|max:255',
             'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'contact' => 'required|string|max:11|regex:/^09\d{9}$/', // Regular expression for Philippine number starting with 09
-            'profileFile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as per your requirements
             'role' => ['required', Rule::in(['Admin', 'Customer'])],
+            'profileFile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as per your requirements
         ]);
         // Check if email already exists
         if (User::where('email', $request->email)->where('id', '!=', $id)->exists()) {
@@ -167,22 +169,15 @@ class UserController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-        $uploadedFile = $request->file('profileFile');
-
-        // Check if a file was uploaded
-        if ($uploadedFile !== null) {
-            // Process the file if it exists
-            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-            $filePath = $uploadedFile->storeAs('uploads', $fileName);
-        } else {
-            // If no file was uploaded, set the file path to null or an empty string
-            $filePath = null; // Or you can set it to an empty string depending on your requirements
-        }
-
+        // Store the file
+        $uploadedFile = $request->file('profileFile'); // Ensure this matches the key used in formData.append in Angular
+        $fileName = time() . '_' . $uploadedFile->getClientOriginalName(null);
+        $filePath = $uploadedFile->storeAs('uploads', $fileName);
         // Only include fields that should be stored in the database
-        $userData = $request->fill(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role']);
+        $userData = $request->fill(['firstname', 'middlename', 'lastname', 'email', 'contact', 'password', 'role', 'profileFile']);
         // Add the file path to the user data
         $userData['profileFile'] = $filePath;
+        // Create new user
         $userData->save();
 
         return response()->json([

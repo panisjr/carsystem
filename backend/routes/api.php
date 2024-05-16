@@ -38,7 +38,7 @@ Route::group(['middleware' => 'api'], function ($router) {
 
     //Accounts 
     Route::get('/getUsers', [UserController::class, 'getUsers']);
-    Route::get('/getTotalAccounts', [UserController::class, 'getTotalAccounts']);
+    Route::get('/getTotal', [UserController::class, 'getTotal']);
     Route::get('users/todayRegisteredUsersCount', [UserController::class, 'todayRegisteredUsersCount']);
     Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser']);
     Route::put('/updateUser/{id}', [UserController::class, 'updateUser']);

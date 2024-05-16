@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('middlename')->nullable();
             $table->string('lastname');
             $table->string('email')->unique();
-            $table->integer('contact');
+            $table->varchar('contact');
             $table->string('role');
             $table->string('status')->default('Active');
             $table->string('profileFile')->nullable();

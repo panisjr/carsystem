@@ -29,6 +29,7 @@ export class SignInComponent {
     private toastr: ToastrService
   ) {}
 
+  
   signIn() {
     let userData = {
       email: this.email,

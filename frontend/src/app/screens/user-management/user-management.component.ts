@@ -88,7 +88,7 @@ export class UserManagementComponent implements OnInit {
         this.resetForm();
       },
       (error) => {
-        this.toastr.error(error.error.message,'sdfasd');
+        this.toastr.error(error.error.message);
       }
     );
   }
@@ -224,7 +224,6 @@ export class UserManagementComponent implements OnInit {
         );
         return; // Stop further execution
       } else if (bodyData.email !== this.userData.email) {
-        console.log('asdfasdf')
         this.loading = false;
         this.toastr.error(
           'Cannot change email when your currently login.',
