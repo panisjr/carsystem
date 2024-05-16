@@ -125,10 +125,11 @@
 
 
 .carImage {
-  width: 200px;
+  width: 400px;
   height: auto;
   display: block;
   margin: 0 auto;
+  transform: scale(1.5);
 }
 
 .car-item {

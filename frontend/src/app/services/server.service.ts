@@ -118,7 +118,8 @@ export class ServerService {
   getReportData(): Observable<any> {
     return this.http.get(`${this.apiUrl}/sales`);
   }
-  getProfilePicture(userId: number): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/profile-picture/${userId}`, { responseType: 'blob' });
+
+  buyCar(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/sales`, data);
   }
 }

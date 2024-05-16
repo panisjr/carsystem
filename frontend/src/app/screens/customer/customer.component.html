@@ -82,7 +82,7 @@
             </div>
           </div>
 
-          <div *ngFor="let car of filteredCars" class="car-item mt-3" (click)="openModal(car)">
+          <div *ngFor="let car of filteredCars" class="car-item mt-3">
             <h2>{{ car.make }} {{ car.model }}</h2>
             <div class="mt-3">
               <img *ngIf="profilePictureUrl" [src]="profilePictureUrl" class="profile" alt="Profile Picture">
@@ -92,6 +92,7 @@
             <p>Price: {{ car.price }}</p>
             <!-- Inside the car-item div -->
             <div>
+                <!--still not working-->
               <button class="btn btn-primary buy-btn" (click)="buyCar(car)">Buy</button>
               <button class="btn btn-success rent-btn" (click)="rentCar(car)">Rent</button>
             </div>
@@ -106,7 +107,7 @@
               <div class="mt-3">
                 <img *ngIf="selectedCar.image_url" [src]="selectedCar.image_url"
                   alt="{{ selectedCar.make }} {{ selectedCar.model }}" class="carImage">
-                <img *ngIf="!selectedCar.image_url" src="../../../assets/car_image.jpg" alt="Default Car Image"
+                <img *ngIf="!selectedCar.image_url" src="../../../assets/car_image.png" alt="Default Car Image"
                   class="carImage">
               </div>
               <p>Year: {{ selectedCar.year }}</p>

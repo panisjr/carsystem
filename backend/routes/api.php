@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\AuthorCollection;
+use App\Http\Controllers\SaleController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +30,7 @@ Route::post('signIn', [AuthController::class, 'signIn']);
 
 Route::group(['middleware' => 'api'], function ($router) {
     Route::post('logout', [AuthController::class, 'logout']);
-
+    
     // Car routes
     Route::get('cars', [CarlistController::class, 'index']);
     Route::post('cars', [CarlistController::class, 'store']);
@@ -35,7 +38,7 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::put('cars/{car}', [CarlistController::class, 'update']);
     Route::delete('cars/{car}', [CarlistController::class, 'destroy']);
     Route::get('users/todayRegisteredCarsCount', [CarlistController::class, 'todayRegisteredCarsCount']);
-
+    
     //Accounts 
     Route::get('/getUsers', [UserController::class, 'getUsers']);
     Route::get('/getTotal', [UserController::class, 'getTotal']);
@@ -43,11 +46,13 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser']);
     Route::put('/updateUser/{id}', [UserController::class, 'updateUser']);
     Route::post('/deactivate/{id}', [UserController::class, 'deactivate']);
-    Route::get('profile-picture/{userId}', [UserController::class, 'show']);
-
+    
     // History
     Route::post('/history', [UserController::class, 'history']);
     Route::get('/getHistory', [UserController::class, 'getHistory']);
     Route::delete('/deleteHistory/{id}', [UserController::class, 'deleteHistory']);
     Route::delete('/deleteAllHistory', [UserController::class, 'deleteAllHistory']);
+    
+    //Sales
+    Route::post('/sales', [SaleController::class, 'store']);
 });
