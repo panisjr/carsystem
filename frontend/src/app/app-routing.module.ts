@@ -15,14 +15,17 @@ const routes: Routes = [
   { path: '', redirectTo: '/signIn', pathMatch: 'full' },
   { path: 'signIn', component: SignInComponent, title: 'Sign In' },
   { path: 'signUp', component: SignUpComponent, title: 'Sign Up on AutoGaurdian' },
-  { path: 'adminDashboard', component: AdminComponent, title: 'AutoGaurdian | Admin Dashboard', canActivate:[AuthGuard]},
-  { path: 'customerDashboard', component: CustomerComponent, title: 'AutoGaurdian | Costumer Dashboard' },
-  { path: 'userManagement', component: UserManagementComponent, title: 'AutoGaurdian | User Management' },
-  { path: 'carlist', component: CarlistComponent, title: 'AutoGaurdian | Car Management' },
-  { path: 'salesRental', component: SalesRentalComponent, title: 'AutoGaurdian | Sales and Rental Management' },
-  { path: 'maintenance', component: MaintenanceSchedulingComponent, title: 'AutoGaurdian | Maintenance Scheduling' },
-  { path: 'reports', component: ReportsComponent, title: 'AutoGaurdian | Reports' },
 
+  // Admin Routes
+  { path: 'adminDashboard', component: AdminComponent, title:'AutoGaurdian | Dashboard',data: { expectedRole: 'Admin' }, canActivate: [AuthGuard]},
+  { path: 'userManagement', component: UserManagementComponent, title: 'AutoGaurdian | User Management' ,data: { expectedRole: 'Admin' }, canActivate: [AuthGuard]},
+  { path: 'carlist', component: CarlistComponent, title: 'AutoGaurdian | Car Management' , data: { expectedRole: 'Admin' }, canActivate: [AuthGuard]},
+  { path: 'salesRental', component: SalesRentalComponent, title: 'AutoGaurdian | Sales and Rental Management',data: { expectedRole: 'Admin' }, canActivate: [AuthGuard] },
+  { path: 'maintenance', component: MaintenanceSchedulingComponent, title: 'AutoGaurdian | Maintenance Scheduling', data: { expectedRole: 'Admin' }, canActivate: [AuthGuard] },
+  { path: 'reports', component: ReportsComponent, title: 'AutoGaurdian | Reports' ,data: { expectedRole: 'Admin' }, canActivate: [AuthGuard]},
+
+  // Customer Routes
+  { path: 'customerDashboard', component: CustomerComponent, title:'AutoGaurdian | Dashboard',data: { expectedRole: 'Customer' }, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

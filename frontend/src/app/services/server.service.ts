@@ -41,8 +41,8 @@ export class ServerService {
   getUsers() {
     return this.http.get(`${this.apiUrl}/getUsers`);
   }
-  updateUser(userId: number, data: any) {
-    return this.http.put(`${this.apiUrl}/updateUser/${userId}`, data);
+  updateUser(userId: number, formData: FormData) {
+    return this.http.put(`${this.apiUrl}/updateUser/${userId}`, formData);
   }
   deleteUser(userId: number) {
     return this.http.delete(`${this.apiUrl}/deleteUser/${userId}`);
@@ -53,10 +53,8 @@ export class ServerService {
   // End CRUD User Management 
 
   // Displaying Data in Admin Dashboard
-  getTotalAccounts(): Observable<any> {
-    return this.http.get<{ totalAccounts: number; totalBooks: number }>(
-      `${this.apiUrl}/getTotalAccounts`
-    );
+  getTotal(): Observable<any> {
+    return this.http.get<{ totalAccounts: number, totalBooks: number }>(`${this.apiUrl}/getTotal`);
   }
   getTodayRegisteredUsersCount() {
     return this.http.get<{ count: number }>(

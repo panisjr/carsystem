@@ -6,6 +6,12 @@
 .logo{
   width: 80px;
  }
+ .totalUsers{
+width: 120px;
+ }
+ .totalCars{
+width: 140px;
+ }
  .selection {
    /* border: 1px solid red; */
    display: flex;
@@ -13,7 +19,9 @@
    padding: 20px;
    flex-direction: column;
  }
- 
+ .box-shadow{
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);
+ }
  .signUp {
   /* font-family: "Jaro", sans-serif; */
   font-family: "Rowdies", sans-serif;
@@ -54,6 +62,22 @@
   height: 170px;
   width: 280px;
   background: linear-gradient(190deg, #ff9c23, #992b36 );
+}
+.allUsers{
+  height: 170px;
+  width: 280px;
+
+  background: linear-gradient(190deg, #ff2323, #1d1b1b );
+}
+.allCars{
+  height: 170px;
+  width: 280px;
+
+  background: linear-gradient(190deg, #1bd431, #1d1b1b );
+}
+
+h1.bi-people-fill {
+  font-size: 100px;
 }
 .newRent{
   height: 170px;

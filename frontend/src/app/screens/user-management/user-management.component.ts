@@ -88,7 +88,7 @@ export class UserManagementComponent implements OnInit {
         this.resetForm();
       },
       (error) => {
-        this.toastr.error(error.error.message,'sdfasd');
+        this.toastr.error(error.error.message);
       }
     );
   }
@@ -205,91 +205,66 @@ export class UserManagementComponent implements OnInit {
   // To update user Credentials
   updateUser(accountId: number) {
     this.loading = true;
-    let bodyData = {
-      firstname: this.firstname,
-      middlename: this.middlename,
-      lastname: this.lastname,
-      email: this.email,
-      contact: this.contact,
-      role: this.role,
-      profileFile: this.profileFile,
-    };
+    const formData = new FormData();
+    formData.append('firstname', this.firstname);
+    formData.append('middlename', this.middlename);
+    formData.append('lastname', this.lastname);
+    formData.append('email', this.email);
+    formData.append('contact', this.contact);
+    formData.append('role', this.role);
+    formData.append('status', String(this.status));
+    formData.append('password', this.password);
+    formData.append('confirm_password', this.confirm_password);
+    if (this.profileFile) {
+      formData.append('profileFile', this.profileFile);
+    }
     if (accountId === this.userData.id) {
       console.log(this.userData.email);
-      if (bodyData.role !== 'Admin') {
+      if (this.role !== 'Admin') { // Access 'role' property directly from 'formData'
         this.loading = false;
         this.toastr.error(
-          'Cannot change role when your currently login.',
+          'Cannot change role when you are currently logged in.',
           'Error Updating Account!'
         );
         return; // Stop further execution
-      } else if (bodyData.email !== this.userData.email) {
+      } else if (formData.get('email') !== this.userData.email) { // Access email from 'formData'
         console.log('asdfasdf')
         this.loading = false;
         this.toastr.error(
-          'Cannot change email when your currently login.',
+          'Cannot change email when you are currently logged in.',
           'Error Updating Account!'
         );
         return; // Stop further execution
       }
-      this.loading = true;
-      this.serverService.updateUser(accountId, bodyData).subscribe(
-        (resultData: any) => {
-          this.loading = false;
-          this.toastr.success(resultData.message);
-          const userID = resultData.data.id;
-          const accountID = this.userData.id;
-          const accountFirst = this.userData.firstname;
-          const accountLast = this.userData.lastname;
-          const accountRole = this.userData.role;
-          this.serverService
-            .history(
-              'Update user account.',
-              userID,
-              accountID,
-              accountFirst,
-              accountLast,
-              accountRole
-            )
-            .subscribe(() => {
-              console.log('Action added to history successfully');
-            });
-          this.getUsers();
-        },
-        (error) => {
-          this.loading = false;
-          this.toastr.error(error.error.message);
-        }
-      );
-    }else {
-      this.serverService.updateUser(accountId, bodyData).subscribe(
-        (resultData: any) => {
-          this.loading = false;
-          this.toastr.success(resultData.message);
-          const userID = resultData.data.id;
-          const accountID = this.userData.id;
-          const accountFirst = this.userData.firstname;
-          const accountLast = this.userData.lastname;
-          const accountRole = this.userData.role;
-          this.serverService
-            .history(
-              'Update user account.',
-              userID,
-              accountID,
-              accountFirst,
-              accountLast,
-              accountRole
-            )
-            .subscribe(() => {
-              console.log('Action added to history successfully');
-            });
-          this.getUsers();
-        },
-        (error) => {
-          this.loading = false;
-          this.toastr.error(error.error.message);
-        }
-      );
     }
+    this.serverService.updateUser(accountId, formData).subscribe(
+      (resultData: any) => {
+        this.loading = false;
+        this.toastr.success(resultData.message);
+        const userID = resultData.data.id;
+        const accountID = this.userData.id;
+        const accountFirst = this.userData.firstname;
+        const accountLast = this.userData.lastname;
+        const accountRole = this.userData.role;
+        this.serverService
+          .history(
+            'Update user account.',
+            userID,
+            accountID,
+            accountFirst,
+            accountLast,
+            accountRole
+          )
+          .subscribe(() => {
+            console.log('Action added to history successfully');
+          });
+        this.getUsers();
+      },
+      (error) => {
+        this.loading = false;
+        this.toastr.error(error.error.message);
+      }
+    );
   }
+  
 }

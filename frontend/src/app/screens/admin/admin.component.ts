@@ -7,9 +7,9 @@ import { ServerService } from '../../services/server.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrl: './admin.component.css',
 })
-export class AdminComponent implements OnInit{
+export class AdminComponent implements OnInit {
   accounts: any[] = [];
   userData: any = {};
   dataTable: any;
@@ -18,18 +18,29 @@ export class AdminComponent implements OnInit{
   // Today's Registered Accounts
   todayRegisteredUsersCount: number = 0;
   todayRegisteredCarsCount: number = 0;
-  constructor(private router:Router, private token:TokenService, private serverService: ServerService){}
+  totalUsers: number = 0;
+  totalCars: number = 0;
+  constructor(
+    private router: Router,
+    private token: TokenService,
+    private serverService: ServerService
+  ) {}
   ngOnInit(): void {
-   const data = this.token.get();
-   this.userData = data.user;
-   this.serverService.getTodayRegisteredUsersCount().subscribe((response) => {
-    this.todayRegisteredUsersCount = response.count;
-  });
-   this.serverService.getTodayRegisteredCarsCount().subscribe((response) => {
-    this.todayRegisteredCarsCount = response.count;
-  });
+    const data = this.token.get();
+    this.userData = data.user;
+    console.log(this.userData.profileFile)
+    this.serverService.getTodayRegisteredUsersCount().subscribe((response) => {
+      this.todayRegisteredUsersCount = response.count;
+    });
+    this.serverService.getTodayRegisteredCarsCount().subscribe((response) => {
+      this.todayRegisteredCarsCount = response.count;
+    });
+    this.serverService.getTotal().subscribe((response: any) => {
+      this.totalUsers = response.totalUsers;
+      this.totalCars = response.totalCars;
+    });
   }
-  logout(){
+  logout() {
     this.token.remove();
     this.router.navigate(['/signIn']);
   }

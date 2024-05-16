@@ -7,19 +7,19 @@
 .backgroundright {
   background: linear-gradient(217.64deg, #9181f4 -5.84%, #97e7e1 106.73%);
 }
-.logo{
- width: 80px;
+.logo {
+  width: 80px;
 }
-form{
+form {
   width: 300px;
 }
-.text-primary{
+.text-primary {
   cursor: pointer;
 }
-.text1{
+.text1 {
   margin-top: 20px;
 }
-.signUpInput{
+.signUpInput {
   padding: 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -52,13 +52,33 @@ form{
   background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
   border: none;
 }
-.signupbtn:hover{
+.signupbtn:hover {
   transition: 0.3s;
   background: linear-gradient(99.78deg, #93d1f8 -5.85%, #654ff7 109.55%);
   color: white;
   border: none;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
+ 
+  .backgroundright{
+    background: none;
+  }
+  .col-8,
+  .signupimage {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+  }
+
+  .col-4 {
+    margin: auto;
+    margin-top: 100px;
+    width: 400px;
+    z-index: 9;
+    background-color: rgb(255, 255, 255);
+    
+    padding: 20px;
+  }
   .loginimage {
     width: 450px; /* Example change */
   }

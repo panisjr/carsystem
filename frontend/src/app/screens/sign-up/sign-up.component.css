@@ -58,7 +58,27 @@ form{
   color: white;
   border: none;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
+ 
+  .backgroundright{
+    background: none;
+  }
+  .col-8,
+  .signupimage {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+  }
+
+  .col-4 {
+    margin: auto;
+    margin-top: 100px;
+    width: 400px;
+    z-index: 9;
+    background-color: rgb(255, 255, 255);
+    
+    padding: 20px;
+  }
   .loginimage {
     width: 450px; /* Example change */
   }
